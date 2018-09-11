@@ -1,0 +1,232 @@
+<html>
+<head>
+<style>
+textarea {width:650px;height:200px;}
+.coords {width:50; height:20px;}
+.stxt {height:22px; width:700px;}
+#time {display:none;}
+h1 {margin-top: 5px; margin-bottom: 5px; padding:0;}
+#itemo {width:730px; height: 140px; overflow:auto;}
+#ireset {display:none;}
+#dial {display:none;}
+#inter {display:block;}
+#diac {display:none;}
+</style>
+</head>
+
+<body>
+<input type="radio" name="chooseurstarter" id="interactions" checked> <input type="radio" name="chooseurstarter" id="dialogue">
+<div id="inter">
+<h1>Image definitions</h1>
+Planet: <input type="text" id="p"><br/>
+Stxt: <input type="text" id="stxt" class="stxt"></br>
+<button type="button" id="plangen">Base</button></br>
+Item: <input type="text" id="s"><br/>
+Animation? 
+Y <input type="radio" name="anim" id="y"> N <input type="radio" name="anim" id="n" checked><br/>
+<div id="time">Time: <input type="text" id="duration" class="coords"></div>
+S.Link: <input type="text" id="sl" value="images/bg/"><br/> 
+Coords: <input type="text" id="xa" class="coords"> <input type="text" id="ya" class="coords"> <input type="text" id="xp" class="coords"> <input type="text" id="yp" class="coords"><br/>
+<br/>
+<button type="button" id="vargen">GENERATE</button><br/><br/>
+
+<div style="width:1320px; height:250px; overflow:auto;"><div style="float:left;"><b>VARIABLES</b><br/>
+<textarea id="vari"></textarea><br/></div>
+<div style="float:right;">
+<b>HIDE/SHOW</b><br/>
+<textarea id="hi" style="width:330px; height:100px;"></textarea> <textarea id="sho" style="width:330px; height:100px;"></textarea><br/>
+<b>HIDE/SHOW SCREENS</b><br/>
+<textarea id="his" style="width:330px; height:100px;"></textarea> <textarea id="shos" style="width:330px; height:100px;"></textarea><br/></div></div>
+
+<h1>Items/Interactions</h1> <a href="" id="additem">add item</a><br/>
+<div id="itemo">
+<input type="checkbox" id="ma1"> <input type="text" id="int1"> <input type="text" id="xa1" class="coords"> <input type="text" id="ya1" class="coords"> <input type="text" id="xp1" class="coords"> <input type="text" id="yp1" class="coords"><br/>stxt <input type="text" id="stxt1" class="stxt">
+
+<div id="area1"><input type="text" id="q11" class="coords"> <input type="text" id="w11" class="coords"> <input type="text" id="e11" class="coords"> <input type="text" id="r11" class="coords"><a href="" class="addi">add area</a></div></div>
+<button type="button" id="itemgen">GENERATE</button> <button type="button" id="ireset">reset</button>
+<br/><br/>
+<div style="width:1320px; height:250px; overflow:auto;"><div style="float:left;"><b>SCREEN</b><br/>
+<textarea id="screen"></textarea><br/></div>
+<div style="float:right;">
+<b>HOVER SCREENS</b><br/>
+<textarea id="hovers"></textarea><br/></div></div>
+</div>
+
+<div id="dial">
+<h1>Character Dialogue</h1>
+<button type="button" id="winsho">window show</button><br/><br/>
+speaking <input type="text" id="speaking"> previous <input type="text" id="prev"> <button type="button" id="sswitch">switch</button><br/>
+<button type="button" id="sclear">clear</button><br/><br/>
+dialogue<br/>
+<input type="text" id="dialog" style="width:800px; height:40px"><br/>
+<br/>
+<input type="text" id="label"><button type="button" id="le">jump</button><br/>
+<br/>
+<button type="button" id="diagen">GENERATE</button> <button type="button" id="diac">reset</button><br/><br/>
+<b>CODE</b><br/>
+<textarea id="diacode" style="width:800px"></textarea>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script>
+var items = 1;
+window["ar1"] = 1;
+var slc = 0;
+var it = {};
+var vxa = {};
+var vya = {};
+var vxp = {};
+var vyp = {};
+var vq = {};
+var vw = {};
+var ve = {};
+var vr = {};
+var area = {};
+var stxt = {};
+
+$('#winsho').click(function() { $('#diacode').append('&nbsp;&nbsp;&nbsp;&nbsp;window show\n'); });
+$('#diac').click(function() { $('#diacode').html(''); (this).hide(); });
+$('#sclear').click(function() { $('#speaking').val(''); $('#prev').val(''); });
+$('#sswitch').click(function() { var speaking = $('#speaking').val(); var prev = $('#prev').val(); $('#speaking').val(prev); $('#prev').val(speaking); });
+$('#le').click(function() { var label = $('#label').val(); $('#diacode').append('&nbsp;&nbsp;&nbsp;&nbsp;jump ' + label + '\n'); });
+$('#diagen').click(function() { 
+	$('#diac').show();
+	var speaking = $('#speaking').val();
+	var prev = $('#prev').val();
+	var speakingc = speaking.length;
+	var prevc = prev.length;
+	var dialog = $('#dialog').val();
+	var dialogc = dialog.length;
+	if(prevc > 0) { $('#diacode').append('&nbsp;&nbsp;&nbsp;&nbsp;hide ' + prev + '\n'); } 
+	if(speakingc > 0) { $('#diacode').append('&nbsp;&nbsp;&nbsp;&nbsp;show ' + speaking + '\n'); } 
+	if(dialogc > 0) { $('#diacode').append('&nbsp;&nbsp;&nbsp;&nbsp;' + speaking + ' "' + dialog + '"\n'); }
+});
+
+$('#y').click(function() { $( '#time' ).show(); });
+$('#n').click(function() { $( '#time' ).hide(); });
+
+$('#interactions').click(function(event) {
+	$('#dial').hide();
+	$('#inter').show();
+});
+
+$('#dialogue').click(function(event) {
+	$('#inter').hide();
+	$('#dial').show();
+});
+
+$('#plangen').click(function() {
+	var p = $('#p').val();
+	var stee = $('#stxt').val();
+	stee = stee.replace(/\\/g, "\\");
+	$('#vari').append('&nbsp;&nbsp;&nbsp;&nbsp;$&nbsp;stxt&nbsp;=&nbsp;"' + stee + '"\n\n');
+	$('#vari').append('&nbsp;&nbsp;&nbsp;&nbsp;image&nbsp;' + p + '&nbsp;=&nbsp;&#34;images/bg/' + p + '/base.jpg&#34;\n');
+});
+
+$('#vargen').click(function() {
+	var p = $('#p').val();
+	var s = $('#s').val();
+	var sl = $('#sl').val();
+	var xa = $('#xa').val(); var ya = $('#ya').val(); var xp = $('#xp').val(); var yp = $('#yp').val();
+	var itemstring = items.toString();
+	if($('#y').is(':checked')) {
+		var duration = $('#duration').val();
+		var standard = '&nbsp;&nbsp;&nbsp;&nbsp;image&nbsp;' + p + '_' + s + '&#58;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#34;' + sl + '1.png&#34;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + duration + '\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#34;' + sl + '2.png&#34;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + duration + '\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat\n';
+	} else {
+		var standard = '&nbsp;&nbsp;&nbsp;&nbsp;image&nbsp;' + p + '_' + s + '&nbsp;=&nbsp;&#34;' + sl + '.png&#34;\n';
+	}
+	var hovered = '&nbsp;&nbsp;&nbsp;&nbsp;image&nbsp;' + p + s + '&nbsp;h&nbsp;=&nbsp;&#34;' + sl + '&nbsp;h.png&#34;\n';
+	$('#vari').append( standard + hovered );
+	
+	$('#hi').append('hide ' + p + '_' + s + 'at Position(xanchor=' + xa + ', yanchor=' + ya + ', xpos=' + xp + ', ypos=' + yp + ')\n' );
+	$('#sho').append('show ' + p + '_' + s + 'at Position(xanchor=' + xa + ', yanchor=' + ya + ', xpos=' + xp + ', ypos=' + yp + ')\n' );
+	$('#his').append('hide screen ' + p + '_' + s + '\n');
+	$('#shos').append('show screen ' + p + '_' + s + '\n');
+	window["ar" + itemstring] = 1;
+	if(items > 1) {
+		$('#itemo').append( '<br/><br/><input type="checkbox" id="ma' + itemstring + '"><input type="text" id="int' + itemstring + '" value="' + s + '"> <input type="text" id="xa' + itemstring + '" class="coords" value="' + xa + '"> <input type="text" id="ya' + itemstring + '" class="coords" value="' + ya + '"> <input type="text" id="xp' + itemstring + '" class="coords" value="' + xp + '"> <input type="text" id="yp' + itemstring + '" class="coords" value="' + yp + '">\nstxt <input type="text" id="stxt' + itemstring + '" class="stxt"><div id="area' + itemstring + '"><input type="text" id="q' + itemstring + '1" class="coords"> <input type="text" id="w' + itemstring + '1" class="coords"> <input type="text" id="e' + itemstring + '1" class="coords"> <input type="text" id="r' + itemstring + '1" class="coords"><a href="" class="addi">add area</a>' );
+	} else {
+		$('#int1').val(s);
+		$('#xa1').val(xa); $('#ya1').val(ya); $('#xp1').val(xp); $('#yp1').val(yp);
+	}
+	items += 1;
+});
+
+$('#additem').click(function(event) {
+	event.preventDefault(event);
+	items += 1;
+	var itemstring = items.toString();
+	window["ar" + itemstring] = 1;
+	$('#itemo').append( '<br/><br/><input type="checkbox" id="ma' + itemstring + '"><input type="text" id="int' + itemstring + '"> <input type="text" id="xa' + itemstring + '" class="coords" > <input type="text" id="ya' + itemstring + '" class="coords" > <input type="text" id="xp' + itemstring + '" class="coords" > <input type="text" id="yp' + itemstring + '" class="coords" >\nstxt <input type="text" id="stxt' + itemstring + '" class="stxt"><div id="area' + itemstring + '"><input type="text" id="q' + itemstring + '1" class="coords"> <input type="text" id="w' + itemstring + '1" class="coords"> <input type="text" id="e' + itemstring + '1" class="coords"> <input type="text" id="r' + itemstring + '1" class="coords"> <a href="" class="addi">add area</a>' );
+});
+
+$(document).on('click', '.addi', function(event){ 
+	event.preventDefault(event);
+	var adip = $(this).parent().attr('id');
+	adip = adip[adip.length -1];
+	var adii = $(this).prevAll('input').attr('id');
+	adii = adii[adii.length -1];
+	adii = Number(adii);
+	adii += 1;
+	adii = adii.toString();
+	var q = "q" + adip + adii; var w = "w" + adip + adii; var e = "e" + adip + adii; var r = "r" + adip + adii;
+	$('#area' + adip).append('<br/><input type="text" id="' + q + '" class="coords"> <input type="text" id="' + w + '" class="coords"> <input type="text" id="' + e + '" class="coords"> <input type="text" id="' + r + '" class="coords">');
+	var adips = adip.toString();
+	window["ar" + adips] = Number(adii);
+	$(this).detach().appendTo('#area' + adip);
+});
+
+$('#ireset').click(function() {
+	$('#screen').html('');
+	$('#hovers').html('');
+	$(this).hide();
+});
+
+$('#itemgen').click(function() {
+	$('#ireset').show();
+	stxt['0'] = $('#stxt').val();
+	ste = stxt['0'];
+	stxt['0'] = ste.replace(/\\/g, "\\");
+	var p = $('#p').val();
+	$('#screen').append('screen ' + p + ':\n');
+	var de = 1;
+	var ce = 1;
+	var cur = 1;
+	while (de <= items) {
+		ce = 1;
+		cur = de.toString();
+		stxt[cur] = $('#stxt' + cur).val();
+		stee  = stxt[cur];
+		stxt[cur] = stee.replace(/\\/g, "\\");
+		it[cur] = $('#int' + cur).val();
+		vxa[cur] = $('#xa' + cur).val();
+		vya[cur] = $('#ya' + cur).val();
+		vxp[cur] = $('#xp' + cur).val();
+		vyp[cur] = $('#yp' + cur).val();
+		$('#screen').append('&nbsp;&nbsp;&nbsp;&nbsp;## codes for ' + it[cur] + '\n');
+		while (ce <= window["ar" + cur]) {
+			var rent = ce.toString();
+			vq[cur + rent] = $('#q' + cur + rent).val();
+			vw[cur + rent] = $('#w' + cur + rent).val();
+			ve[cur + rent] = $('#e' + cur + rent).val();
+			vr[cur + rent] = $('#r' + cur + rent).val();
+			if($('#ma' + cur).is(':checked')) { $('#screen').append( '&nbsp;&nbsp;&nbsp;&nbsp;mousearea:\n' ); }
+			else { $('#screen').append( '&nbsp;&nbsp;&nbsp;&nbsp;button:\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background None\n' ); }
+			$('#screen').append( '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;area(' + vq[cur+rent] + ', ' + vw[cur+rent] + ', ' + ve[cur+rent] + ', ' + vr[cur+rent] + ')\n' + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hovered [ SetVariable("' + p + '_' + it[cur] + 'h", "' + p + '_' + it[cur] + ' h"), SetVariable("stxt", "' + stxt[cur] + '") ]\n' + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unhovered [ SetVariable("' + p + '_' + it[cur] + 'h", "' + p + '_' + it[cur] + '"), SetVariable("stxt", "' + stxt["0"] + '") ]' );
+			if($('#ma' + cur).is(':checked')) { $('#screen').append( '\n' ); }
+			else { $('#screen').append( '\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;action Jump("' + p + 'd_' + it[cur] + '")\n' ); }
+			if(b = window["ar" + cur]) { $('#screen').append( '\n' ); }
+			ce += 1;
+			
+		}
+		$('#hovers').append('screen&nbsp;' + p + '_' + it[cur] +':\n&nbsp;&nbsp;&nbsp;&nbsp;add&nbsp;' + p + '_' + it[cur] + 'h&nbsp;xanchor&nbsp;' + vxa[cur] + '&nbsp;yanchor&nbsp;' + vya[cur] + '&nbsp;xpos&nbsp;' + vxp[cur] + '&nbsp;ypos&nbsp;' + vyp[cur] + '\n');
+	de += 1;
+	}
+});
+</script>
+</body>
+
+</html>
