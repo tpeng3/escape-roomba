@@ -104,7 +104,6 @@ screen say(who, what):
         if who is not None:
 
             window:
-                id "namebox"
                 style "namebox"
                 text who id "who"
 
@@ -116,10 +115,6 @@ screen say(who, what):
     if not renpy.variant("small"):
         add SideImage() xalign 0.0 yalign 1.0
 
-
-## Make the namebox available for styling through the Character object.
-init python:
-    config.character_id_prefixes.append('namebox')
 
 style window is default
 style say_label is default
@@ -169,7 +164,7 @@ style say_dialogue:
 ## This screen must create an input displayable with id "input" to accept the
 ## various input parameters.
 ##
-## https://www.renpy.org/doc/html/screen_special.html#input
+## http://www.renpy.org/doc/html/screen_special.html#input
 
 screen input(prompt):
     style_prefix "input"
@@ -202,7 +197,7 @@ style input:
 ## statement. The one parameter, items, is a list of objects, each with caption
 ## and action fields.
 ##
-## https://www.renpy.org/doc/html/screen_special.html#choice
+## http://www.renpy.org/doc/html/screen_special.html#choice
 
 screen choice(items):
     style_prefix "choice"
@@ -223,7 +218,7 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 225
+    ypos 270
     yanchor 0.5
 
     spacing gui.choice_spacing
@@ -347,7 +342,7 @@ style navigation_button_text:
 ##
 ## Used to display the main menu when Ren'Py starts.
 ##
-## https://www.renpy.org/doc/html/screen_special.html#main-menu
+## http://www.renpy.org/doc/html/screen_special.html#main-menu
 
 screen main_menu():
 
@@ -383,17 +378,17 @@ style main_menu_title is main_menu_text
 style main_menu_version is main_menu_text
 
 style main_menu_frame:
-    xsize 234
+    xsize 280
     yfill True
 
     background "gui/overlay/main_menu.png"
 
 style main_menu_vbox:
     xalign 1.0
-    xoffset -16
-    xmaximum 667
+    xoffset -20
+    xmaximum 800
     yalign 1.0
-    yoffset -16
+    yoffset -20
 
 style main_menu_text:
     properties gui.text_properties("main_menu", accent=True)
@@ -414,7 +409,7 @@ style main_menu_version:
 ## this screen is intended to be used with one or more children, which are
 ## transcluded (placed) inside it.
 
-screen game_menu(title, scroll=None, yinitial=0.0):
+screen game_menu(title, scroll=None):
 
     style_prefix "game_menu"
 
@@ -438,11 +433,9 @@ screen game_menu(title, scroll=None, yinitial=0.0):
                 if scroll == "viewport":
 
                     viewport:
-                        yinitial yinitial
                         scrollbars "vertical"
                         mousewheel True
                         draggable True
-                        pagekeys True
 
                         side_yfill True
 
@@ -453,12 +446,11 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
                     vpgrid:
                         cols 1
-                        yinitial yinitial
+                        yinitial 1.0
 
                         scrollbars "vertical"
                         mousewheel True
                         draggable True
-                        pagekeys True
 
                         side_yfill True
 
@@ -495,32 +487,32 @@ style return_button is navigation_button
 style return_button_text is navigation_button_text
 
 style game_menu_outer_frame:
-    bottom_padding 25
-    top_padding 100
+    bottom_padding 30
+    top_padding 120
 
     background "gui/overlay/game_menu.png"
 
 style game_menu_navigation_frame:
-    xsize 234
+    xsize 280
     yfill True
 
 style game_menu_content_frame:
-    left_margin 34
-    right_margin 17
-    top_margin 9
+    left_margin 40
+    right_margin 20
+    top_margin 10
 
 style game_menu_viewport:
-    xsize 767
+    xsize 920
 
 style game_menu_vscrollbar:
     unscrollable gui.unscrollable
 
 style game_menu_side:
-    spacing 9
+    spacing 10
 
 style game_menu_label:
-    xpos 42
-    ysize 100
+    xpos 50
+    ysize 120
 
 style game_menu_label_text:
     size gui.title_text_size
@@ -530,7 +522,7 @@ style game_menu_label_text:
 style return_button:
     xpos gui.navigation_xpos
     yalign 1.0
-    yoffset -24
+    yoffset -30
 
 
 ## About screen ################################################################
@@ -685,7 +677,7 @@ style slot_time_text is slot_button_text
 style slot_name_text is slot_button_text
 
 style page_label:
-    xpadding 42
+    xpadding 50
     ypadding 3
 
 style page_label_text:
@@ -716,6 +708,11 @@ style slot_button_text:
 screen preferences():
 
     tag menu
+
+    if renpy.mobile:
+        $ cols = 2
+    else:
+        $ cols = 4
 
     use game_menu(_("Preferences"), scroll="viewport"):
 
@@ -835,7 +832,7 @@ style pref_label_text:
     yalign 1.0
 
 style pref_vbox:
-    xsize 188
+    xsize 225
 
 style radio_vbox:
     spacing gui.pref_button_spacing
@@ -858,18 +855,18 @@ style check_button_text:
     properties gui.button_text_properties("check_button")
 
 style slider_slider:
-    xsize 292
+    xsize 350
 
 style slider_button:
     properties gui.button_properties("slider_button")
     yalign 0.5
-    left_margin 9
+    left_margin 10
 
 style slider_button_text:
     properties gui.button_text_properties("slider_button")
 
 style slider_vbox:
-    xsize 375
+    xsize 450
 
 
 ## History screen ##############################################################
@@ -887,7 +884,7 @@ screen history():
     ## Avoid predicting this screen, as it can be very large.
     predict False
 
-    use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
+    use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport")):
 
         style_prefix "history"
 
@@ -909,16 +906,10 @@ screen history():
                         if "color" in h.who_args:
                             text_color h.who_args["color"]
 
-                $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
-                text what
+                text h.what
 
         if not _history_list:
             label _("The dialogue history is empty.")
-
-
-## This determines what tags are allowed to be displayed on the history screen.
-
-define gui.history_allow_tags = set()
 
 
 style history_window is empty
@@ -979,7 +970,7 @@ screen help():
         style_prefix "help"
 
         vbox:
-            spacing 13
+            spacing 15
 
             hbox:
 
@@ -1081,7 +1072,6 @@ screen gamepad_help():
         label _("Right Shoulder")
         text _("Rolls forward to later dialogue.")
 
-
     hbox:
         label _("D-Pad, Sticks")
         text _("Navigate the interface.")
@@ -1105,14 +1095,14 @@ style help_text is gui_text
 
 style help_button:
     properties gui.button_properties("help_button")
-    xmargin 7
+    xmargin 8
 
 style help_button_text:
     properties gui.button_text_properties("help_button")
 
 style help_label:
-    xsize 209
-    right_padding 17
+    xsize 250
+    right_padding 20
 
 style help_label_text:
     size gui.text_size
@@ -1131,7 +1121,7 @@ style help_label_text:
 ## The confirm screen is called when Ren'Py wants to ask the player a yes or no
 ## question.
 ##
-## https://www.renpy.org/doc/html/screen_special.html#confirm
+## http://www.renpy.org/doc/html/screen_special.html#confirm
 
 screen confirm(message, yes_action, no_action):
 
@@ -1149,7 +1139,7 @@ screen confirm(message, yes_action, no_action):
         vbox:
             xalign .5
             yalign .5
-            spacing 25
+            spacing 30
 
             label _(message):
                 style "confirm_prompt"
@@ -1157,7 +1147,7 @@ screen confirm(message, yes_action, no_action):
 
             hbox:
                 xalign 0.5
-                spacing 84
+                spacing 100
 
                 textbutton _("Yes") action yes_action
                 textbutton _("No") action no_action
@@ -1204,7 +1194,7 @@ screen skip_indicator():
     frame:
 
         hbox:
-            spacing 5
+            spacing 6
 
             text _("Skipping")
 
@@ -1258,7 +1248,7 @@ screen notify(message):
     style_prefix "notify"
 
     frame at notify_appear:
-        text "[message!tq]"
+        text message
 
     timer 3.25 action Hide('notify')
 
@@ -1288,7 +1278,7 @@ style notify_text:
 ##
 ## This screen is used for NVL-mode dialogue and menus.
 ##
-## https://www.renpy.org/doc/html/screen_special.html#nvl
+## http://www.renpy.org/doc/html/screen_special.html#nvl
 
 
 screen nvl(dialogue, items=None):
@@ -1344,7 +1334,7 @@ screen nvl_dialogue(dialogue):
 
 ## This controls the maximum number of NVL-mode entries that can be displayed at
 ## once.
-define config.nvl_list_length = gui.nvl_list_length
+define config.nvl_list_length = 6
 
 style nvl_window is default
 style nvl_entry is default
@@ -1409,7 +1399,7 @@ style nvl_button_text:
 
 style pref_vbox:
     variant "medium"
-    xsize 375
+    xsize 450
 
 ## Since a mouse may not be present, we replace the quick menu with a version
 ## that uses fewer and bigger buttons that are easier to touch.
@@ -1434,14 +1424,6 @@ style window:
     variant "small"
     background "gui/phone/textbox.png"
 
-style radio_button:
-    variant "small"
-    foreground "gui/phone/button/check_[prefix_]foreground.png"
-
-style check_button:
-    variant "small"
-    foreground "gui/phone/button/check_[prefix_]foreground.png"
-
 style nvl_window:
     variant "small"
     background "gui/phone/nvl.png"
@@ -1456,7 +1438,7 @@ style game_menu_outer_frame:
 
 style game_menu_navigation_frame:
     variant "small"
-    xsize 284
+    xsize 340
 
 style game_menu_content_frame:
     variant "small"
@@ -1464,43 +1446,7 @@ style game_menu_content_frame:
 
 style pref_vbox:
     variant "small"
-    xsize 334
-
-style bar:
-    variant "small"
-    ysize gui.bar_size
-    left_bar Frame("gui/phone/bar/left.png", gui.bar_borders, tile=gui.bar_tile)
-    right_bar Frame("gui/phone/bar/right.png", gui.bar_borders, tile=gui.bar_tile)
-
-style vbar:
-    variant "small"
-    xsize gui.bar_size
-    top_bar Frame("gui/phone/bar/top.png", gui.vbar_borders, tile=gui.bar_tile)
-    bottom_bar Frame("gui/phone/bar/bottom.png", gui.vbar_borders, tile=gui.bar_tile)
-
-style scrollbar:
-    variant "small"
-    ysize gui.scrollbar_size
-    base_bar Frame("gui/phone/scrollbar/horizontal_[prefix_]bar.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
-    thumb Frame("gui/phone/scrollbar/horizontal_[prefix_]thumb.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
-
-style vscrollbar:
-    variant "small"
-    xsize gui.scrollbar_size
-    base_bar Frame("gui/phone/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
-    thumb Frame("gui/phone/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
-
-style slider:
-    variant "small"
-    ysize gui.slider_size
-    base_bar Frame("gui/phone/slider/horizontal_[prefix_]bar.png", gui.slider_borders, tile=gui.slider_tile)
-    thumb "gui/phone/slider/horizontal_[prefix_]thumb.png"
-
-style vslider:
-    variant "small"
-    xsize gui.slider_size
-    base_bar Frame("gui/phone/slider/vertical_[prefix_]bar.png", gui.vslider_borders, tile=gui.slider_tile)
-    thumb "gui/phone/slider/vertical_[prefix_]thumb.png"
+    xsize 400
 
 style slider_pref_vbox:
     variant "small"
@@ -1508,9 +1454,242 @@ style slider_pref_vbox:
 
 style slider_pref_slider:
     variant "small"
-    xsize 500
+    xsize 600
+
+
+##############################################################################
+# Quick Menu
+#
+# A screen that's included by the default say screen, and adds quick access to
+# several useful functions.
+screen quick_menu():
+
+    # Add an in-game quick menu.
+    hbox:
+        style_group "quick"
+
+        xalign 1.0
+        yalign 1.0
+
+        textbutton _("Back") action Rollback()
+        textbutton _("Save") action ShowMenu('save')
+        textbutton _("Q.Save") action QuickSave()
+        textbutton _("Q.Load") action QuickLoad()
+        textbutton _("Skip") action Skip()
+        textbutton _("F.Skip") action Skip(fast=True, confirm=True)
+        textbutton _("Auto") action Preference("auto-forward", "toggle")
+        textbutton _("Prefs") action ShowMenu('preferences')
+
+init -2:
+    style quick_button:
+        is default
+        background None
+        xpadding 5
+
+    style quick_button_text:
+        is default
+        size 12
+        idle_color "#8888"
+        hover_color "#ccc"
+        selected_idle_color "#cc08"
+        selected_hover_color "#cc0"
+        insensitive_color "#4448"
+
+####################################################################################################################################
+#CUSTOM STUFF START################################################################################
+
+#screen for side gui
+#woggle is defined here so it can be used by the screen
+init:
+    #the animated wiggles that separate the side screen from main screen
+    image woggle:
+        "images/side/w1.png"
+        0.7
+        "images/side/w2.png"
+        0.7
+        repeat
+
+screen popup:
+    frame:
+        xalign 0.5
+        yalign 0.5
+        ypos 300
+        xpos 400
+        xmaximum 300
+        ymaximum 100
+        textbutton "{size=60}close{/size}" action Hide("popup")
+
+
+screen sidey:
+    zorder 10
+    frame:
+        xanchor 0
+        yanchor 0
+        xpos 793
+        ypos 0
+        xpadding 0
+        ypadding 0
+        background None
+        add "images/side/bg.jpg" xanchor 1.0 yanchor 0 xpos 359 ypos 0
+        add "woggle" xanchor 0 yanchor 0 xpos 0 ypos 0
+
+        if compad == "cool" and resolute == "heckya":
+            add "images/side/compad.png" xanchor 0 yanchor 0 xpos 0 ypos 0
+            add "images/side/resolute.jpg" xanchor 0 yanchor 0 xpos 165 ypos 105
+
+            imagebutton auto "images/side/log_%s.png" xanchor 0 yanchor 0 xpos 174 ypos 136 action Show("popup")
+
+            add spic xanchor 0 yanchor 0 xpos 76 ypos 176
+            viewport id "tex":
+                child_size (222, 315)
+                xanchor 0
+                yanchor 0
+                xpos 80
+                ypos 182
+                xmaximum 231
+                ymaximum 315
+                draggable True
+                mousewheel True
+    
+                vbox:
+                    xmaximum 222
+                    text "{font=pixelmix.ttf}{size=14}{color=#fff9e9}[stxt]{/color}{/size}{/font}"
+    
+            vbar value YScrollValue("tex") ymaximum 315 xanchor 0 yanchor 0 xpos 302 ypos 182 unscrollable "hide"
+
+        elif compad == "cool":
+            add "images/side/compad.png" xanchor 0 yanchor 0 xpos 0 ypos 0
+
+            imagebutton auto "images/side/log_%s.png" xanchor 0 yanchor 0 xpos 174 ypos 136 action Show("popup")
+
+            add spic xanchor 0 yanchor 0 xpos 76 ypos 176
+            viewport id "tex":
+                child_size (222, 315)
+                xanchor 0
+                yanchor 0
+                xpos 80
+                ypos 182
+                xmaximum 231
+                ymaximum 315
+                draggable True
+                mousewheel True
+    
+                vbox:
+                    xmaximum 222
+                    text "{font=pixelmix.ttf}{size=14}{color=#fff9e9}[stxt]{/color}{/size}{/font}"
+    
+            vbar value YScrollValue("tex") ymaximum 315 xanchor 0 yanchor 0 xpos 302 ypos 182 unscrollable "hide"
+
+
+        if braves == "3":
+            add "images/side/b3.png" xanchor 0 yanchor 0 xpos 36 ypos 0
+        elif braves == "2":
+            add "images/side/b2.png" xanchor 0 yanchor 0 xpos 36 ypos 0
+        else:
+            add "images/side/b1.png" xanchor 0 yanchor 0 xpos 36 ypos 0
+
+
+        if fuel == 5:
+            add "images/side/f5.jpg" xanchor 0 yanchor 0 xpos 193 ypos 551
+        elif fuel == 4:
+            add "images/side/f4.jpg" xanchor 0 yanchor 0 xpos 193 ypos 551
+        elif fuel == 3:
+            add "images/side/f3.jpg" xanchor 0 yanchor 0 xpos 193 ypos 551
+        elif fuel == 2:
+            add "images/side/f2.jpg" xanchor 0 yanchor 0 xpos 193 ypos 551
+        elif fuel == 1:
+            add "images/side/f1.jpg" xanchor 0 yanchor 0 xpos 193 ypos 551
+
+
+        if hasmubox:
+            if mubox == "on":
+                imagebutton auto "images/side/onbox_%s.png" xanchor 0 yanchor 0 xpos 275 ypos 0 action Show("popup")
+            else:
+                imagebutton auto "images/side/mubox_%s.png" xanchor 0 yanchor 0 xpos 275 ypos 0 action Show("popup")
+
+        if ia == "sure":
+            imagebutton auto "images/side/item_%s.png" xanchor 0 yanchor 0 xpos 80 ypos 579 action Show("popup")
+            imagebutton auto "images/side/act_%s.png" xanchor 1.0 yanchor 0 xpos 316 ypos 579 action Show("popup")
+        else:
+            add "images/side/lookaroundyou.png" xanchor 0 yanchor 0 xpos 61 ypos 583
+
+## for the very beginning
+screen fakey:
+    frame:
+        xanchor 0
+        yanchor 0
+        xpos 793
+        ypos 0
+        xpadding 0
+        ypadding 0
+        background None
+        add "images/side/bga.jpg" xanchor 1.0 yanchor 0 xpos 359 ypos 0
+        add "woggle" xanchor 0 yanchor 0 xpos 0 ypos 0
+
+        if startcompad == "cool":
+            add "images/side/compad.png" xanchor 0 yanchor 0 xpos 0 ypos 0
+            imagebutton auto "images/side/log_%s.png" xanchor 0 yanchor 0 xpos 174 ypos 136 action Show("popup")
+
+
+        if braves == "3":
+            add "images/side/b3.png" xanchor 0 yanchor 0 xpos 36 ypos 0
+        elif braves == "2":
+            add "images/side/b2.png" xanchor 0 yanchor 0 xpos 36 ypos 0
+        else:
+            add "images/side/b1.png" xanchor 0 yanchor 0 xpos 36 ypos 0
+
+
+        if fuel == 5:
+            add "images/side/f5.jpg" xanchor 0 yanchor 0 xpos 193 ypos 551
+
+        imagebutton auto "images/side/item_%s.png" xanchor 0 yanchor 0 xpos 80 ypos 579 action Show("popup")
+        imagebutton auto "images/side/act_%s.png" xanchor 1.0 yanchor 0 xpos 316 ypos 579 action Show("popup")
+
+screen p612:
+    ## buttons that code for the bed
+    ## each area is a transparent square... i wonder if theres an easier way
+    button:
+        background None
+        area (151, 386, 162, 119)
+        hovered [ SetVariable("p612_beh", "p612_be h"), SetVariable("stxt", "A bed made of cotton and polyester. \n \nMade for sleeping.") ]
+        unhovered [ SetVariable("p612_beh", "p612_be"), SetVariable("stxt", "Planet 612. \n \nLargely uninhabited, save for a species of plant indigenous only to the planet, and one rabbit.") ]
+        action Jump("p612d_bed")
+    button:
+        background None
+        area (206, 428, 167, 115)
+        hovered [ SetVariable("p612_beh", "p612_be h"), SetVariable("stxt", "A bed made of cotton and polyester. \n \nMade for sleeping.") ]
+        unhovered [ SetVariable("p612_beh", "p612_be"), SetVariable("stxt", "Planet 612. \n \nLargely uninhabited, save for a species of plant indigenous only to the planet, and one rabbit.") ]
+        action Jump("p612d_bed")
+    button:
+        background None
+        area (281, 486, 177, 94)
+        hovered [ SetVariable("p612_beh", "p612_be h"), SetVariable("stxt", "A bed made of cotton and polyester. \n \nMade for sleeping.") ]
+        unhovered [ SetVariable("p612_beh", "p612_be"), SetVariable("stxt", "Planet 612. \n \nLargely uninhabited, save for a species of plant indigenous only to the planet, and one rabbit.") ]
+        action Jump("p612d_bed")
+
+    ## star buttons
+    button:
+        background None
+        area (76, 65, 46, 39)
+        hovered [ SetVariable("p612_sh", "p612_s h"), SetVariable("stxt", "STARSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS") ]
+        unhovered [ SetVariable("p612_sh", "p612_s"), SetVariable("stxt", "Planet 612. \n \nLargely uninhabited, save for a species of plant indigenous only to the planet, and one rabbit.") ]
+        action Jump("p612d_stars")
 
 
 
 
+### p612 hover screens
+# what's added is actually variables that contain the image name, which is changed depending on if it's hovered over, like above
+screen p612_be:
+    add p612_beh xanchor 0 yanchor 0 xpos 122 ypos 368
+screen p612_s:
+    add p612_sh at uwu
+screen p612_f:    
+    add p612_fh at uwu
+screen p612_bo:
+    add p612_boh xanchor 0 yanchor 0 xpos 456 ypos 390
+screen p612_m:
+    add p612_mh xanchor 0 yanchor 0 xpos 193 ypos 270
+screen p612_ship:
+    add p612_shiph xanchor 0 yanchor 0 xpos 239 ypos 46
 
