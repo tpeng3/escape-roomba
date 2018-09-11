@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = "intrastellar"
+define config.name = _("escape roomba")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -23,20 +23,21 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "0.0"
+define config.version = "1.0"
 
 
-## Text that is placed on the game's about screen. To insert a blank line
-## between paragraphs, write \n\n.
+## Text that is placed on the game's about screen. Place the text between the
+## triple-quotes, and leave a blank line between paragraphs.
 
-define gui.about = _("")
+define gui.about = _p("""
+""")
 
 
 ## A short name for the game used for executables and directories in the built
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "TESTY"
+define build.name = "escaperoomba"
 
 
 ## Sounds and music ############################################################
@@ -46,7 +47,7 @@ define build.name = "TESTY"
 
 define config.has_sound = True
 define config.has_music = True
-define config.has_voice = False
+define config.has_voice = True
 
 
 ## To allow the user to play a test sound on the sound or voice channel,
@@ -71,8 +72,13 @@ define config.has_voice = False
 
 ## Entering or exiting the game menu.
 
-define config.enter_transition = None
-define config.exit_transition = None
+define config.enter_transition = dissolve
+define config.exit_transition = dissolve
+
+
+## Between screens of the game menu.
+
+define config.intra_transition = dissolve
 
 
 ## A transition that is used after a game has been loaded.
@@ -101,12 +107,11 @@ define config.end_game_transition = None
 
 define config.window = "auto"
 
-###UHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 
 ## Transitions used to show and hide the dialogue window
 
-define config.window_show_transition = None
-define config.window_hide_transition = None
+define config.window_show_transition = Dissolve(.2)
+define config.window_hide_transition = Dissolve(.2)
 
 
 ## Preference defaults #########################################################
@@ -137,7 +142,7 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
-define config.save_directory = "intrastellar_reboot-1536702804"
+define config.save_directory = "escaperoomba-1536561594"
 
 
 ## Icon ########################################################################
@@ -145,24 +150,6 @@ define config.save_directory = "intrastellar_reboot-1536702804"
 ## The icon displayed on the taskbar or dock.
 
 define config.window_icon = "gui/window_icon.png"
-
-#############STYLE###################################################
-style say_label:
-    bold False
-    outlines [(absolute(1), "#fff", absolute(0), absolute(0))]
-    color "#2e304a"
-    size 37
-
-style window:
-    left_margin 10
-    right_margin 360
-    bottom_margin 0
-    left_padding 60
-    right_padding 60
-    bottom_padding 0
-    yminimum 211
-    xminimum 796
-
 
 
 ## Build configuration #########################################################
@@ -206,6 +193,12 @@ init python:
 
     build.documentation('*.html')
     build.documentation('*.txt')
+
+## Set this to a string containing your Apple Developer ID Application to enable
+## codesigning on the Mac. Be sure to change it to your own Apple-issued ID.
+
+# define build.mac_identity = "Developer ID Application: Guy Shy (XHTE5H7Z42)"
+
 
 ## A Google Play license key is required to download expansion files and perform
 ## in-app purchases. It can be found on the "Services & APIs" page of the Google
