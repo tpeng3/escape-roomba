@@ -1,0 +1,65 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 53, in script
+    l default "Let's see..."
+  File "game/screens.rpy", line 1617, in execute
+    screen phone:
+  File "game/screens.rpy", line 1617, in execute
+    screen phone:
+  File "game/screens.rpy", line 1618, in execute
+    frame:
+  File "game/screens.rpy", line 1629, in execute
+    if startcompad == "cool":
+NameError: name 'startcompad' is not defined
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 53, in script
+    l default "Let's see..."
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\ast.py", line 652, in execute
+    renpy.exports.say(who, what, interact=self.interact, *args, **kwargs)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\exports.py", line 1199, in say
+    who(what, *args, **kwargs)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\character.py", line 1016, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, **display_args)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\character.py", line 817, in do_display
+    **display_args)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\character.py", line 566, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\ui.py", line 287, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 2649, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 3033, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 511, in visit_all
+    d.visit_all(callback)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\screen.py", line 424, in visit_all
+    callback(self)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 3033, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\screen.py", line 434, in per_interact
+    self.update()
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\screen.py", line 619, in update
+    self.screen.function(**self.scope)
+  File "game/screens.rpy", line 1617, in execute
+    screen phone:
+  File "game/screens.rpy", line 1617, in execute
+    screen phone:
+  File "game/screens.rpy", line 1618, in execute
+    frame:
+  File "game/screens.rpy", line 1629, in execute
+    if startcompad == "cool":
+  File "<screen language>", line 1629, in <module>
+NameError: name 'startcompad' is not defined
+
+Windows-8-6.2.9200
+Ren'Py 7.0.0.196
+intrastellar 0.0
+Wed Sep 12 16:13:08 2018

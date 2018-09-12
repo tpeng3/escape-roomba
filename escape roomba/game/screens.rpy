@@ -113,7 +113,7 @@ screen say(who, what):
     ## If there's a side image, display it above the text. Do not display on the
     ## phone variant - there's no room.
     if not renpy.variant("small"):
-        add SideImage() xalign 0.0 yalign 1.0
+        add SideImage() xalign 0.05 yalign 0.95
 
 
 style window is default
@@ -131,7 +131,7 @@ style window:
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+    # background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
 
 style namebox:
     xpos gui.name_xpos
@@ -1614,36 +1614,38 @@ screen sidey:
             add "images/side/lookaroundyou.png" xanchor 0 yanchor 0 xpos 61 ypos 583
 
 ## for the very beginning
-screen fakey:
+screen phone:
     frame:
-        xanchor 0
-        yanchor 0
-        xpos 793
-        ypos 0
+        # xanchor 0.1
+        # yanchor 0
+        xalign 0.95
+        yalign 0.1
+        # xpos 1020
+        # ypos 20
         xpadding 0
         ypadding 0
         background None
-        add "images/side/bga.jpg" xanchor 1.0 yanchor 0 xpos 359 ypos 0
-        add "woggle" xanchor 0 yanchor 0 xpos 0 ypos 0
+        add "images/side/menu_phone.png"
+        # add "woggle" xanchor 0 yanchor 0 xpos 0 ypos 0
 
-        if startcompad == "cool":
-            add "images/side/compad.png" xanchor 0 yanchor 0 xpos 0 ypos 0
-            imagebutton auto "images/side/log_%s.png" xanchor 0 yanchor 0 xpos 174 ypos 136 action Show("popup")
-
-
-        if braves == "3":
-            add "images/side/b3.png" xanchor 0 yanchor 0 xpos 36 ypos 0
-        elif braves == "2":
-            add "images/side/b2.png" xanchor 0 yanchor 0 xpos 36 ypos 0
-        else:
-            add "images/side/b1.png" xanchor 0 yanchor 0 xpos 36 ypos 0
+        # if startcompad == "cool":
+        #     add "images/side/compad.png" xanchor 0 yanchor 0 xpos 0 ypos 0
+        #     imagebutton auto "images/side/log_%s.png" xanchor 0 yanchor 0 xpos 174 ypos 136 action Show("popup")
 
 
-        if fuel == 5:
-            add "images/side/f5.jpg" xanchor 0 yanchor 0 xpos 193 ypos 551
+        # if braves == "3":
+        #     add "images/side/b3.png" xanchor 0 yanchor 0 xpos 36 ypos 0
+        # elif braves == "2":
+        #     add "images/side/b2.png" xanchor 0 yanchor 0 xpos 36 ypos 0
+        # else:
+        #     add "images/side/b1.png" xanchor 0 yanchor 0 xpos 36 ypos 0
 
-        imagebutton auto "images/side/item_%s.png" xanchor 0 yanchor 0 xpos 80 ypos 579 action Show("popup")
-        imagebutton auto "images/side/act_%s.png" xanchor 1.0 yanchor 0 xpos 316 ypos 579 action Show("popup")
+
+        # if fuel == 5:
+        #     add "images/side/f5.jpg" xanchor 0 yanchor 0 xpos 193 ypos 551
+
+        # imagebutton auto "images/side/item_%s.png" xanchor 0 yanchor 0 xpos 80 ypos 579 action Show("popup")
+        # imagebutton auto "images/side/act_%s.png" xanchor 1.0 yanchor 0 xpos 316 ypos 579 action Show("popup")
 
 screen p612:
     ## buttons that code for the bed
@@ -1674,8 +1676,6 @@ screen p612:
         hovered [ SetVariable("p612_sh", "p612_s h"), SetVariable("stxt", "STARSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS") ]
         unhovered [ SetVariable("p612_sh", "p612_s"), SetVariable("stxt", "Planet 612. \n \nLargely uninhabited, save for a species of plant indigenous only to the planet, and one rabbit.") ]
         action Jump("p612d_stars")
-
-
 
 
 ### p612 hover screens
