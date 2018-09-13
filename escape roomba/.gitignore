@@ -1,0 +1,4 @@
+# so git stops bugging over certain file changes, since these files are always changing
+*.rpyc
+*.txt
+saves/
