@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
@@ -63,3 +64,73 @@ Windows-8-6.2.9200
 Ren'Py 7.0.0.196
 intrastellar 0.0
 Wed Sep 12 16:13:08 2018
+=======
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 54, in script
+    l default "Let's see..."
+  File "game/screens.rpy", line 1621, in execute
+    screen phone:
+  File "game/screens.rpy", line 1621, in execute
+    screen phone:
+  File "game/screens.rpy", line 1622, in execute
+    frame:
+  File "game/screens.rpy", line 1622, in keywords
+    frame:
+NameError: name 'black' is not defined
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 54, in script
+    l default "Let's see..."
+  File "C:\Users\Redd\RENPY\renpy\ast.py", line 613, in execute
+    renpy.exports.say(who, what, interact=self.interact)
+  File "C:\Users\Redd\RENPY\renpy\exports.py", line 1147, in say
+    who(what, interact=interact)
+  File "C:\Users\Redd\RENPY\renpy\character.py", line 877, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, **display_args)
+  File "C:\Users\Redd\RENPY\renpy\character.py", line 716, in do_display
+    **display_args)
+  File "C:\Users\Redd\RENPY\renpy\character.py", line 508, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "C:\Users\Redd\RENPY\renpy\ui.py", line 285, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 2526, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 2793, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
+    d.visit_all(callback)
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
+    d.visit_all(callback)
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
+    d.visit_all(callback)
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
+    d.visit_all(callback)
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
+    d.visit_all(callback)
+  File "C:\Users\Redd\RENPY\renpy\display\screen.py", line 399, in visit_all
+    callback(self)
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 2793, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\Redd\RENPY\renpy\display\screen.py", line 409, in per_interact
+    self.update()
+  File "C:\Users\Redd\RENPY\renpy\display\screen.py", line 578, in update
+    self.screen.function(**self.scope)
+  File "game/screens.rpy", line 1621, in execute
+    screen phone:
+  File "game/screens.rpy", line 1621, in execute
+    screen phone:
+  File "game/screens.rpy", line 1622, in execute
+    frame:
+  File "game/screens.rpy", line 1622, in keywords
+    frame:
+  File "<screen language>", line 1630, in <module>
+NameError: name 'black' is not defined
+
+Windows-7-6.1.7601-SP1
+Ren'Py 6.99.12.4.2187
+Escape Roomba 0.0
+>>>>>>> 62415b4ef3ef320cbf6da92679b62bf9ceb47baa
