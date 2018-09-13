@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = "intrastellar"
+define config.name = _("Escape Roomba")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -36,7 +36,7 @@ define gui.about = _("")
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "TESTY"
+define build.name = "EscapeRoomba"
 
 
 ## Sounds and music ############################################################
@@ -44,9 +44,12 @@ define build.name = "TESTY"
 ## These three variables control which mixers are shown to the player by
 ## default. Setting one of these to False will hide the appropriate mixer.
 
+init python:
+    renpy.music.register_channel("bleeps", "voice")
+
 define config.has_sound = True
 define config.has_music = True
-define config.has_voice = False
+define config.has_voice = True
 
 
 ## To allow the user to play a test sound on the sound or voice channel,
@@ -71,18 +74,18 @@ define config.has_voice = False
 
 ## Entering or exiting the game menu.
 
-define config.enter_transition = None
-define config.exit_transition = None
+define config.enter_transition = dissolve
+define config.exit_transition = dissolve
 
 
 ## A transition that is used after a game has been loaded.
 
-define config.after_load_transition = None
+define config.after_load_transition = fade
 
 
 ## Used when entering the main menu after the game has ended.
 
-define config.end_game_transition = None
+define config.end_game_transition = fade
 
 
 ## A variable to set the transition used when the game starts does not exist.
@@ -114,13 +117,13 @@ define config.window_hide_transition = None
 ## Controls the default text speed. The default, 0, is infinite, while any other
 ## number is the number of characters per second to type out.
 
-default preferences.text_cps = 0
+default preferences.text_cps = 42
 
 
 ## The default auto-forward delay. Larger numbers lead to longer waits, with 0
 ## to 30 being the valid range.
 
-default preferences.afm_time = 15
+default preferences.afm_time = 8
 
 
 ## Save directory ##############################################################
@@ -137,7 +140,7 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
-define config.save_directory = "intrastellar_reboot-1536702804"
+define config.save_directory = "EscapeRoomba-1536702804"
 
 
 ## Icon ########################################################################
@@ -162,7 +165,6 @@ style window:
     bottom_padding 0
     yminimum 211
     xminimum 796
-
 
 
 ## Build configuration #########################################################
