@@ -1618,7 +1618,7 @@ screen phone:
     frame:
         # xanchor 0.1
         # yanchor 0
-        xalign 0.95
+        xalign 0.97
         yalign 0.1
         # xpos 1020
         # ypos 20

@@ -58,6 +58,7 @@ label start:
     l "Fuel, filled."
     l "Food and water, packed."
     l "Spaceship, ready to go."
+    l "If there are two guys on the moon, and one killed the other with a rock, would that be fcked up or what?"
 #     l "Hmmm... I think that's everything."
 #     l "My first space expedition... I hope everything goes okay..."
 #     l "(dev note: only the bed and one star is interactable rn)"
