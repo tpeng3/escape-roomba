@@ -2,7 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 140: indentation mismatch.
+File "game/assets.rpy", line 48: invalid syntax
+    image bg_temp:
+                 ^
+    
 
-Ren'Py Version: Ren'Py 7.0.0.196
-Wed Sep 12 15:50:55 2018
+Ren'Py Version: Ren'Py 6.99.12.4.2187

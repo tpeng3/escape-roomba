@@ -47,40 +47,6 @@ image side leika default = "images/sprite/side_leika_default.png"
 image bg_temp = "images/bg/bg_temp.png"
 
 # Declare items
-image p612 = "images/bg/p612/base.jpg"
-image p612_f:
-    "images/bg/p612/f1.png"
-    0.5
-    "images/bg/p612/f2.png"
-    0.5
-    repeat
-image p612_f h = "images/bg/p612/f3.png"
-image p612_s:
-    "images/bg/p612/s1.png"
-    0.6
-    "images/bg/p612/s2.png"
-    0.6
-    repeat
-image p612_s h = "images/bg/p612/s3.png"
-image p612_be = "images/bg/p612/bed.png"
-image p612_be h = "images/bg/p612/bed h.png"
-image p612_m:
-    "images/bg/p612/mbox.png"
-    0.4
-    "images/bg/p612/mbox1.png"
-    0.4
-    repeat
-image p612_m h = "images/bg/p612/mbox h.png"
-image p612_bo = "images/bg/p612/books.png"
-image p612_bo h = "images/bg/p612/books h.png"
-image p612_sm:
-    "images/bg/p612/smoke1.png"
-    0.7
-    "images/bg/p612/smoke2.png"
-    0.7
-    repeat
-image ship = "images/bg/ship.png"
-image ship h = "images/bg/ship h.png"
 
 # Declare cgs
 image cg_meeting = "images/cg/cg_meeting.png"

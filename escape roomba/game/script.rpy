@@ -47,18 +47,22 @@ label start:
 #     show p612_m at Position(xanchor=0, yanchor=0, xpos=193, ypos=270)
 #     show ship at Position(xanchor=0, yanchor=0, xpos=239, ypos=46)
 #     with dissolve
+    $ roomstate = "blank"
     scene black
-    show bg_temp at bg_corner
+    show screen room
     show screen phone
 
     l default "Let's see..."
-#     $ startcompad = True
-    l "ComPad, here."
-#     $ fuel = 5
-    l "Fuel, filled."
-    l "Food and water, packed."
-    l "Spaceship, ready to go."
     l "If there are two guys on the moon, and one killed the other with a rock, would that be fcked up or what?"
+
+label click:
+    $ roomstate = "bark"
+    $ renpy.pause(hard=True)
+
+
+label whodis:
+    l "what is that."
+    l "that's not roombasan"
 #     l "Hmmm... I think that's everything."
 #     l "My first space expedition... I hope everything goes okay..."
 #     l "(dev note: only the bed and one star is interactable rn)"
