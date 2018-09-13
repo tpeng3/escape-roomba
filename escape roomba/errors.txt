@@ -1,21 +1,11 @@
-<<<<<<< HEAD
 ﻿I'm sorry, but errors were detected in your script. Please correct the
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 140: indentation mismatch.
-
-Ren'Py Version: Ren'Py 7.0.0.196
-Wed Sep 12 15:50:55 2018
-=======
-﻿I'm sorry, but errors were detected in your script. Please correct the
-errors listed below, and try again.
-
-
-File "game/assets.rpy", line 48: invalid syntax
-    image bg_temp:
-                 ^
+File "game/script.rpy", line 15: unexpected indent
+        cheese_packaged = Item("Package of Sliced Cheese", image = "inv/inv_cheese_packaged.png")
+        ^
     
 
-Ren'Py Version: Ren'Py 6.99.12.4.2187
->>>>>>> 62415b4ef3ef320cbf6da92679b62bf9ceb47baa
+Ren'Py Version: Ren'Py 7.0.0.196
+Thu Sep 13 13:28:28 2018

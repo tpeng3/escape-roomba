@@ -1,136 +1,44 @@
-<<<<<<< HEAD
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 53, in script
-    l default "Let's see..."
-  File "game/screens.rpy", line 1617, in execute
-    screen phone:
-  File "game/screens.rpy", line 1617, in execute
-    screen phone:
-  File "game/screens.rpy", line 1618, in execute
-    frame:
-  File "game/screens.rpy", line 1629, in execute
-    if startcompad == "cool":
-NameError: name 'startcompad' is not defined
+  File "renpy/common/00start.rpy", line 198, in script call
+    call _gl_test
+  File "renpy/common/00gltest.rpy", line 440, in script
+    with None
+  File "game/inventory.rpy", line 53, in display_items_overlay
+    for i in range(0, len(inventory.items)):
+NameError: global name 'inventory' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 53, in script
-    l default "Let's see..."
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\ast.py", line 652, in execute
-    renpy.exports.say(who, what, interact=self.interact, *args, **kwargs)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\exports.py", line 1199, in say
-    who(what, *args, **kwargs)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\character.py", line 1016, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, **display_args)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\character.py", line 817, in do_display
-    **display_args)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\character.py", line 566, in display_say
-    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\ui.py", line 287, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 2649, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 3033, in interact_core
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 511, in visit_all
-    d.visit_all(callback)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 511, in visit_all
-    d.visit_all(callback)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 511, in visit_all
-    d.visit_all(callback)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\screen.py", line 424, in visit_all
-    callback(self)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 3033, in <lambda>
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\screen.py", line 434, in per_interact
-    self.update()
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\screen.py", line 619, in update
-    self.screen.function(**self.scope)
-  File "game/screens.rpy", line 1617, in execute
-    screen phone:
-  File "game/screens.rpy", line 1617, in execute
-    screen phone:
-  File "game/screens.rpy", line 1618, in execute
-    frame:
-  File "game/screens.rpy", line 1629, in execute
-    if startcompad == "cool":
-  File "<screen language>", line 1629, in <module>
-NameError: name 'startcompad' is not defined
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\bootstrap.py", line 306, in bootstrap
+    renpy.main.main()
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\main.py", line 513, in main
+    run(restart)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\main.py", line 139, in run
+    renpy.execution.run_context(True)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\execution.py", line 879, in run_context
+    context.run()
+  File "renpy/common/00start.rpy", line 198, in script call
+    call _gl_test
+  File "renpy/common/00gltest.rpy", line 440, in script
+    with None
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\ast.py", line 1337, in execute
+    renpy.exports.with_statement(trans, paired)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\exports.py", line 1452, in with_statement
+    return renpy.game.interface.do_with(trans, paired, clear=clear)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 2200, in do_with
+    self.with_none()
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 2224, in with_none
+    self.compute_overlay()
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 2321, in compute_overlay
+    i()
+  File "game/inventory.rpy", line 53, in display_items_overlay
+    for i in range(0, len(inventory.items)):
+NameError: global name 'inventory' is not defined
 
 Windows-8-6.2.9200
 Ren'Py 7.0.0.196
-intrastellar 0.0
-Wed Sep 12 16:13:08 2018
-=======
-﻿I'm sorry, but an uncaught exception occurred.
-
-While running game code:
-  File "game/script.rpy", line 54, in script
-    l default "Let's see..."
-  File "game/screens.rpy", line 1621, in execute
-    screen phone:
-  File "game/screens.rpy", line 1621, in execute
-    screen phone:
-  File "game/screens.rpy", line 1622, in execute
-    frame:
-  File "game/screens.rpy", line 1622, in keywords
-    frame:
-NameError: name 'black' is not defined
-
--- Full Traceback ------------------------------------------------------------
-
-Full traceback:
-  File "game/script.rpy", line 54, in script
-    l default "Let's see..."
-  File "C:\Users\Redd\RENPY\renpy\ast.py", line 613, in execute
-    renpy.exports.say(who, what, interact=self.interact)
-  File "C:\Users\Redd\RENPY\renpy\exports.py", line 1147, in say
-    who(what, interact=interact)
-  File "C:\Users\Redd\RENPY\renpy\character.py", line 877, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, **display_args)
-  File "C:\Users\Redd\RENPY\renpy\character.py", line 716, in do_display
-    **display_args)
-  File "C:\Users\Redd\RENPY\renpy\character.py", line 508, in display_say
-    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
-  File "C:\Users\Redd\RENPY\renpy\ui.py", line 285, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 2526, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
-  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 2793, in interact_core
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
-    d.visit_all(callback)
-  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
-    d.visit_all(callback)
-  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
-    d.visit_all(callback)
-  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
-    d.visit_all(callback)
-  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
-    d.visit_all(callback)
-  File "C:\Users\Redd\RENPY\renpy\display\screen.py", line 399, in visit_all
-    callback(self)
-  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 2793, in <lambda>
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "C:\Users\Redd\RENPY\renpy\display\screen.py", line 409, in per_interact
-    self.update()
-  File "C:\Users\Redd\RENPY\renpy\display\screen.py", line 578, in update
-    self.screen.function(**self.scope)
-  File "game/screens.rpy", line 1621, in execute
-    screen phone:
-  File "game/screens.rpy", line 1621, in execute
-    screen phone:
-  File "game/screens.rpy", line 1622, in execute
-    frame:
-  File "game/screens.rpy", line 1622, in keywords
-    frame:
-  File "<screen language>", line 1630, in <module>
-NameError: name 'black' is not defined
-
-Windows-7-6.1.7601-SP1
-Ren'Py 6.99.12.4.2187
 Escape Roomba 0.0
->>>>>>> 62415b4ef3ef320cbf6da92679b62bf9ceb47baa
+Thu Sep 13 13:28:48 2018
