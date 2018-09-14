@@ -31,6 +31,7 @@ label start:
     scene black
     show screen room
     show screen phone
+    show screen inventory_button
 
     l default "Let's see..."
     l "If there are two guys on the moon, and one killed the other with a rock, would that be fcked up or what?"
@@ -40,8 +41,12 @@ label click:
     $ renpy.pause(hard=True)
 
 label whodis:
+    $ inventory.add(tomato_whole)
     l "what is that."
     l "that's not roombasan"
 
+label end:
     # This ends the game.
     return
+
+return

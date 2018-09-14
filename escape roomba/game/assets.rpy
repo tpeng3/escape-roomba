@@ -82,6 +82,7 @@ image p612_sm:
 image ship = "images/bg/ship.png"
 image ship h = "images/bg/ship h.png"
 
+
 # Declare cgs
 image cg_meeting = "images/cg/cg_meeting.png"
 

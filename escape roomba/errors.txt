@@ -2,10 +2,10 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 15: unexpected indent
-        cheese_packaged = Item("Package of Sliced Cheese", image = "inv/inv_cheese_packaged.png")
-        ^
+File "game/inventory.rpy", line 50: invalid syntax
+    python: 
+           ^
     
 
 Ren'Py Version: Ren'Py 7.0.0.196
-Thu Sep 13 13:28:28 2018
+Thu Sep 13 16:44:24 2018

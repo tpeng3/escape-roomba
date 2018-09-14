@@ -149,23 +149,6 @@ define config.save_directory = "EscapeRoomba-1536702804"
 
 define config.window_icon = "gui/window_icon.png"
 
-#############STYLE###################################################
-style say_label:
-    bold False
-    outlines [(absolute(1), "#fff", absolute(0), absolute(0))]
-    color "#2e304a"
-    size 37
-
-style window:
-    left_margin 10
-    right_margin 360
-    bottom_margin 0
-    left_padding 60
-    right_padding 60
-    bottom_padding 0
-    yminimum 211
-    xminimum 796
-
 
 ## Build configuration #########################################################
 ##
