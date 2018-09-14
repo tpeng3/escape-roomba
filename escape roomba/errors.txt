@@ -2,10 +2,8 @@
 errors listed below, and try again.
 
 
-File "game/inventory.rpy", line 50: invalid syntax
-    python: 
-           ^
-    
+File "game/inventory.rpy", line 79: is not terminated with a newline. (Check strings and parenthesis.)
+    screen gui_tooltip (my_picture="", my_tt_xpos=100, my_tt_ypos=100:
 
 Ren'Py Version: Ren'Py 7.0.0.196
-Thu Sep 13 16:44:24 2018
+Thu Sep 13 18:40:06 2018

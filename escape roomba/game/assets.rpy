@@ -25,6 +25,20 @@ image ctc_arrow:
 
 image im = "gui/overlay/item_menu.png"
 
+# Script style shortcuts
+init python:
+
+    def emph_tag(tag, argument, contents):
+        color = "#FAA293"
+        return [
+                (renpy.TEXT_TAG, u"color="+color),
+            ] + contents + [
+                (renpy.TEXT_TAG, u"/color"),
+            ]
+
+    config.custom_text_tags["emph"] = emph_tag
+
+
 # Declare Leika
 # if we want voice beeps haha
 init python: 

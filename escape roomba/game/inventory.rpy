@@ -30,27 +30,6 @@ init -1 python:
     ham_packaged = Item("Packaged Sliced Ham", image = "inv/inv_ham_packaged.png")
     tomato_whole = Item("Whole Tomato", image = "images/inventory/tomato_idle.png")
 
-
-    # Setting up tooltip style (flavor text when hovering over items)
-    style.tips_top = Style(style.default)
-    #style.title.font="gui/arial.ttf"
-    style.tips_top.size=24
-    style.tips_top.color="#191970"
-    style.tips_top.outlines=[(2, "#FFFFFF", 0,0)]
-    style.tips_top.kerning = 5
-
-    style.tips_bottom = Style(style.tips_top)
-    style.tips_bottom.size=24
-    style.tips_bottom.color="#191970"
-    style.tips_bottom.outlines=[(0, "#191970", 0,0)]
-    #style.tips_bottom.outlines=[(0, "#155A57", 1, 1), (0, "#155A57", 2, 2)]
-    style.tips_bottom.kerning = 2
-
-    style.button.background=Frame("frame.png",25,25)
-    style.button.yminimum=52
-    style.button.xminimum=52
-    style.button_text.color="000"
-
     # showitems = True #debug text
     # def display_items_overlay():
     #     if showitems:
@@ -65,10 +44,9 @@ init -1 python:
     #         ui.text(inventory_show, color="#000")
     # config.overlay_functions.append(display_items_overlay)
 
-
 screen inventory_button:
     hbox align (.95,.04) spacing 20:
-        imagebutton auto "images/inventory/show_inventory_%s.png" focus_mask True action [ Show("inventory_screen"), Hide("inventory_button")]
+        imagebutton auto "images/inventory/show_inventory_%s.png" focus_mask True action [ Show("inventory_screen"), Hide("inventory_button"), Hide("window")]
 
 screen inventory_screen:
     # add "inventory2.png" # the background
@@ -91,14 +69,14 @@ screen inventory_screen:
                 $ y += 120
                 $ x = 160 # same as coordinates of top left item
             $ pic = item.image
-            $ my_tooltip = "tooltip_inventory_" + pic.replace("inv_", "").replace("inv/","").replace(".png", "")
-            imagebutton idle pic hover pic xpos x ypos y action [Hide("gui_tooltip"), Show("inventory_button"), SetVariable("item", item), Hide("inventory_screen"), item_use] hovered [ Show("gui_tooltip", my_picture=my_tooltip, my_tt_ypos=693) ] unhovered [Hide("gui_tooltip")] #at inv_eff
+            $ my_tooltip = "tooltip_inventory_" + pic.replace("inv_", "").replace("images/inventory/","").replace(".png", "")
+            imagebutton idle pic hover pic xpos x ypos y action [Hide("gui_tooltip"), Show("inventory_button"), SetVariable("item", item), Hide("inventory_screen"), item_use] hovered [ Show("gui_tooltip", my_picture=my_tooltip, my_tt_ypos=0) ] unhovered [Hide("gui_tooltip")] #at inv_eff
 
         $ i += 1
         if len(inventory.items)>itemnum:
             imagebutton auto "next_page_%s.png" focus_mask True action [SetVariable('inv_page', next_inv_page), Show("inventory_screen")]
 
-screen gui_tooltip (my_picture="", my_tt_xpos=58, my_tt_ypos=687):
+screen gui_tooltip (my_picture="", my_tt_xpos=gui.dialogue_xpos, my_tt_ypos=200):
     add my_picture xpos my_tt_xpos ypos my_tt_ypos
 
 init -1:
@@ -109,13 +87,11 @@ init -1:
     #         linear 0.2 alpha 1.0
     #     on hover:
     #         linear 0.2 alpha 2.5
-    $ xpos = 0
-    $ ypos = 0
-    $ tt_xpos = 0
-    $ tt_ypos = 0
-    $ tt_ypos_end = 0
+    $ width = gui.dialogue_width
+    $ height = gui.textbox_height
+    $ ypos = 465
 
     # TOOLTIPS
-    image tooltip_inventory_ham_packaged = LiveComposite((xpos, ypos), (tt_xpos,tt_ypos), Text("Packaged Sliced Ham", style="tips_top"), (tt_xpos,tt_ypos_end), Text("Have a hammy day.", style="tips_bottom"))
-    image tooltip_inventory_tomato_whole = LiveComposite((xpos, ypos), (tt_xpos,tt_ypos), Text("Whole Tomato", style="tips_top"), (tt_xpos,tt_ypos_end), Text("A plump, red tomato. It's so juicy!", style="tips_bottom"))
+    image tooltip_inventory_ham_packaged = LiveComposite((width, height), (0,ypos), Text("Packaged Sliced Ham"))
+    image tooltip_inventory_tomato_idle = LiveComposite((width, height), (0,ypos), Text("(It's a {emph}Whole Tomato.{/emph} I bet you $5 I can eat this whole.)"))
  

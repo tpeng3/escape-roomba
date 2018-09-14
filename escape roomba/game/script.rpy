@@ -35,6 +35,11 @@ label start:
 
     l default "Let's see..."
     l "If there are two guys on the moon, and one killed the other with a rock, would that be fcked up or what?"
+    window hide
+
+# default searching label
+label seekawayout:
+    window hide
 
 label click:
     $ roomstate = "bark"
@@ -43,10 +48,10 @@ label click:
 label whodis:
     $ inventory.add(tomato_whole)
     l "what is that."
-    l "that's not roombasan"
+    l "that's not {emph}roombasan{/emph}"
+    jump seekawayout
 
 label end:
     # This ends the game.
     return
 
-return
