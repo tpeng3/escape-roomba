@@ -10,26 +10,25 @@ init offset = -1
 ################################################################################
 
 screen room:
-    imagebutton auto "images/bg/genericitem_%s.png" focus_mask True xanchor 0 yanchor 0 xpos 700 ypos 90 action Jump("whodis")
-
-    frame:
-        yanchor 0
+    fixed:
+        fit_first True
         xanchor 0
+        yanchor 0
         xpos 23
         ypos 20
+        xmaximum 795
+        ymaximum 395
         # xpadding 0
         # ypadding 0
-        background None
-
         # bg will change via CASE SWITCHING later aka check dynamic displayables
         add "images/bg/bg_temp.png"
-
+        imagebutton auto "images/bg/genericitem_%s.png" focus_mask True xalign 0.5 yalign 0.5 action Jump("whodis")
         # this is gonna be some walltext code later HOO...
         if roomstate == "bark":
             imagebutton auto "images/bg/genericitem_%s.png" focus_mask True xanchor 0 yanchor 0 xpos 700 ypos 90 action Jump("whodis")
             # imagebutton auto "images/side/show_recipe_%s.png" focus_mask True xanchor 0 yanchor 0 xpos 900 ypos 90 action Jump("message")
-    
-    add "images/bg/bg_borders.png" yanchor 0 xanchor 0 xpos 23 ypos 20
+        
+        add "images/bg/bg_borders.png"
     
 
 
