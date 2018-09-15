@@ -10,19 +10,27 @@ init offset = -1
 ################################################################################
 
 screen room:
+    imagebutton auto "images/bg/genericitem_%s.png" focus_mask True xanchor 0 yanchor 0 xpos 700 ypos 90 action Jump("whodis")
+
     frame:
         yanchor 0
         xanchor 0
         xpos 23
         ypos 20
-        #xalign 0.08
-        #yalign 0.1
-        xpadding 0
-        ypadding 0
+        # xpadding 0
+        # ypadding 0
         background None
+
+        # bg will change via CASE SWITCHING later aka check dynamic displayables
         add "images/bg/bg_temp.png"
+
+        # this is gonna be some walltext code later HOO...
         if roomstate == "bark":
             imagebutton auto "images/bg/genericitem_%s.png" focus_mask True xanchor 0 yanchor 0 xpos 700 ypos 90 action Jump("whodis")
+            # imagebutton auto "images/side/show_recipe_%s.png" focus_mask True xanchor 0 yanchor 0 xpos 900 ypos 90 action Jump("message")
+    
+    add "images/bg/bg_borders.png" yanchor 0 xanchor 0 xpos 23 ypos 20
+    
 
 
 ################################################################################ 
@@ -34,33 +42,25 @@ screen phone:
     frame:
         xanchor 0
         yanchor 0
-        # xalign 0.98
-        # yalign 0.1
-        xpos 794
+        xpos 822
+        ypos 21
         xpadding 0
         ypadding 0
-        background "#000"
-        add "images/side/menu_phone.png" xanchor 0 yanchor 0 xpos 28 ypos 21
-        # add "woggle" xanchor 0 yanchor 0 xpos 0 ypos 0
+        # background None
 
-        # if startcompad == "cool":
-        #     add "images/side/compad.png" xanchor 0 yanchor 0 xpos 0 ypos 0
-        #     imagebutton auto "images/side/log_%s.png" xanchor 0 yanchor 0 xpos 174 ypos 136 action Show("popup")
+        add "images/side/menu_phone.png"
 
-
-        # if braves == "3":
-        #     add "images/side/b3.png" xanchor 0 yanchor 0 xpos 36 ypos 0
-        # elif braves == "2":
-        #     add "images/side/b2.png" xanchor 0 yanchor 0 xpos 36 ypos 0
-        # else:
-        #     add "images/side/b1.png" xanchor 0 yanchor 0 xpos 36 ypos 0
+        # inventory app
+        # hbox align (.95,.04) spacing 20:
+        imagebutton auto "images/side/icon_inv_%s.png" focus_mask True action [ Show("inventory_screen")] xpos 40 ypos 60
+        # vbox xalign 1.0 yalign 1.0:
+            # imagebutton auto "images/side/icon_inv_%s.png" action [ Show("inventory_screen")]
 
 
-        # if fuel == 5:
-        #     add "images/side/f5.jpg" xanchor 0 yanchor 0 xpos 193 ypos 551
 
-        # imagebutton auto "images/side/item_%s.png" xanchor 0 yanchor 0 xpos 80 ypos 579 action Show("popup")
-        # imagebutton auto "images/side/act_%s.png" xanchor 1.0 yanchor 0 xpos 316 ypos 579 action Show("popup")
+# screen inventory_button:
+#     hbox align (.95,.04) spacing 20:
+#         imagebutton auto "images/inventory/show_inventory_%s.png" focus_mask True action [ Show("inventory_screen"), Hide("inventory_button")]
 
 
 #screen for side gui

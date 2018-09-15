@@ -2,8 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/inventory.rpy", line 79: is not terminated with a newline. (Check strings and parenthesis.)
-    screen gui_tooltip (my_picture="", my_tt_xpos=100, my_tt_ypos=100:
+File "game/interactions.rpy", line 22: u'background' is not a keyword argument or valid child for the fixed statement.
+    background "#facade"
+              ^
 
 Ren'Py Version: Ren'Py 7.0.0.196
-Thu Sep 13 18:40:06 2018
+Sat Sep 15 01:22:19 2018

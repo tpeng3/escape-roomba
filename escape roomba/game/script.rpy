@@ -31,7 +31,6 @@ label start:
     scene black
     show screen room
     show screen phone
-    show screen inventory_button
 
     l default "Let's see..."
     l "If there are two guys on the moon, and one killed the other with a rock, would that be fcked up or what?"
@@ -50,6 +49,20 @@ label whodis:
     l "what is that."
     l "that's not {emph}roombasan{/emph}"
     jump seekawayout
+
+# would probably move the chat messages into its own file later
+label message:
+    wc "Listen up."
+    wsame "I've only had Roomba-san for one day and and a half,"
+    wsame "But if anything happened to him I would kill everyone in this room and then myself."
+menu:
+    "> Yes.":
+        lc "lol id lose in a knife fight against roombasan"
+        jump seekawayout
+    "> No.":
+        lc "hey......... bnch"
+        jump seekawayout
+
 
 label end:
     # This ends the game.

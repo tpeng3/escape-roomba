@@ -300,7 +300,7 @@ screen navigation():
 
         else:
 
-            textbutton _("History") action ShowMenu("history")
+            # textbutton _("History") action ShowMenu("history")
 
             textbutton _("Save") action ShowMenu("save")
 
@@ -316,7 +316,7 @@ screen navigation():
 
             textbutton _("Main Menu") action MainMenu()
 
-        textbutton _("About") action ShowMenu("about")
+        # textbutton _("About") action ShowMenu("about")
 
         if renpy.variant("pc"):
 
@@ -1287,54 +1287,61 @@ screen nvl(dialogue, items=None):
         style "nvl_window"
 
         has vbox:
-            spacing gui.nvl_spacing
+            # spacing gui.nvl_spacing
+            style "nvl_vbox"
 
-        ## Displays dialogue in either a vpgrid or the vbox.
-        if gui.nvl_height:
+        # Display dialogue.
+        for d in dialogue:
 
-            vpgrid:
-                cols 1
-                yinitial 1.0
+            window:
+                id d.window_id
 
-                use nvl_dialogue(dialogue)
+                vbox:
+                    yfit gui.nvl_height is None
+                    spacing 6
 
-        else:
+                    if d.who is not None:
 
-            use nvl_dialogue(dialogue)
+                        if d.who is not "":
+                            text d.who:
+                                id d.who_id
 
-        ## Displays the menu, if given. The menu may be displayed incorrectly if
-        ## config.narrator_menu is set to True, as it is above.
-        for i in items:
+                        frame:
+                            # background Frame("chat frame.png", 10,10)
+                            xpos 230
+                            top_padding 10 bottom_padding 10 left_padding 10 right_padding 10
+                            text d.what:
+                                id d.what_id
 
-            textbutton i.caption:
-                action i.action
-                style "nvl_button"
-
-    add SideImage() xalign 0.0 yalign 1.0
+                    else:
+                        text d.what:
+                            id d.what_id
 
 
 screen nvl_dialogue(dialogue):
 
-    for d in dialogue:
+        for d in dialogue:
 
-        window:
-            id d.window_id
+            window:
+                id d.window_id
 
-            fixed:
-                yfit gui.nvl_height is None
+                fixed:
+                    yfit gui.nvl_height is None
 
-                if d.who is not None:
+                    if d.who is not None:
 
-                    text d.who:
-                        id d.who_id
+                        text d.who:
+                            id d.who_id
 
-                text d.what:
-                    id d.what_id
+                    text d.what:
+
+                            id d.what_id
+                            text_align 0.0
 
 
 ## This controls the maximum number of NVL-mode entries that can be displayed at
 ## once.
-define config.nvl_list_length = 6
+define config.nvl_list_length = gui.nvl_list_length
 
 style nvl_window is default
 style nvl_entry is default

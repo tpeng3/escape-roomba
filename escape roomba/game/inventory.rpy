@@ -44,16 +44,16 @@ init -1 python:
     #         ui.text(inventory_show, color="#000")
     # config.overlay_functions.append(display_items_overlay)
 
-screen inventory_button:
-    hbox align (.95,.04) spacing 20:
-        imagebutton auto "images/inventory/show_inventory_%s.png" focus_mask True action [ Show("inventory_screen"), Hide("inventory_button"), Hide("window")]
+# screen inventory_button:
+#     hbox align (.95,.04) spacing 20:
+#         imagebutton auto "images/inventory/show_inventory_%s.png" focus_mask True action [ Show("inventory_screen"), Hide("inventory_button")]
 
 screen inventory_screen:
     # add "inventory2.png" # the background
     modal True #prevent clicking on other stuff when inventory is shown
 
     hbox align (.95,.04) spacing 20:
-        imagebutton auto "images/inventory/hide_inventory_%s.png" focus_mask True action [ Hide("inventory_screen"), Show("inventory_button")]
+        imagebutton auto "images/inventory/hide_inventory_%s.png" focus_mask True action [ Hide("inventory_screen")]
     $ itemnum = 8 # how many items to display on one page
     $ x = 160 # coordinates of the top left item position
     $ y = 0
