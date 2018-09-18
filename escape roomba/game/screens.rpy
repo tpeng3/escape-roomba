@@ -206,6 +206,8 @@ screen choice(items):
         for i in items:
             textbutton i.caption action i.action
 
+        add SideImage() xalign 0.05 yalign 0.95
+
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.
@@ -217,14 +219,15 @@ style choice_button is button
 style choice_button_text is button_text
 
 style choice_vbox:
-    xalign 0.5
-    ypos 270
+    xalign 0.0
+    xpos gui.dialogue_xpos
+    ypos gui.dialogue_ypos + 416
     yanchor 0.5
 
     spacing gui.choice_spacing
 
-style choice_button is default:
-    properties gui.button_properties("choice_button")
+# style choice_button is default:
+#     properties gui.button_properties("choice_button")
 
 style choice_button_text is default:
     properties gui.button_text_properties("choice_button")
@@ -1307,9 +1310,9 @@ screen nvl(dialogue, items=None):
                                 id d.who_id
 
                         frame:
-                            # background Frame("chat frame.png", 10,10)
-                            xpos 230
-                            top_padding 10 bottom_padding 10 left_padding 10 right_padding 10
+                            background "#ffffff"
+                            xpos 0
+                            # top_padding 10 bottom_padding 10 left_padding 10 right_padding 10
                             text d.what:
                                 id d.what_id
 
@@ -1353,9 +1356,10 @@ style nvl_button is button
 style nvl_button_text is button_text
 
 style nvl_window:
-    xfill True
-    yfill True
-
+    xanchor 0
+    yanchor 0
+    xpos 23
+    ypos 20
     background "gui/nvl.png"
     padding gui.nvl_borders.padding
 
@@ -1373,11 +1377,12 @@ style nvl_label:
     text_align gui.nvl_name_xalign
 
 style nvl_dialogue:
+    size gui.nvl_text_size
     xpos gui.nvl_text_xpos
     xanchor gui.nvl_text_xalign
     ypos gui.nvl_text_ypos
     xsize gui.nvl_text_width
-    min_width gui.nvl_text_width
+    min_width gui.nvl_text_width_min
     text_align gui.nvl_text_xalign
     layout ("subtitle" if gui.nvl_text_xalign else "tex")
 

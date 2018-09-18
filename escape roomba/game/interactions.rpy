@@ -18,8 +18,7 @@ screen room:
         ypos 20
         xmaximum 795
         ymaximum 395
-        # xpadding 0
-        # ypadding 0
+
         # bg will change via CASE SWITCHING later aka check dynamic displayables
         add "images/bg/bg_temp.png"
         imagebutton auto "images/bg/genericitem_%s.png" focus_mask True xalign 0.5 yalign 0.5 action Jump("whodis")
@@ -38,22 +37,24 @@ screen room:
 
 # Set up phone screen
 screen phone:
-    frame:
+    fixed:
+        fit_first True
         xanchor 0
         yanchor 0
         xpos 822
         ypos 21
-        xpadding 0
-        ypadding 0
+        xmaximum 235
+        ymaximum 395
         # background None
 
         add "images/side/menu_phone.png"
 
         # inventory app
-        # hbox align (.95,.04) spacing 20:
-        imagebutton auto "images/side/icon_inv_%s.png" focus_mask True action [ Show("inventory_screen")] xpos 40 ypos 60
-        # vbox xalign 1.0 yalign 1.0:
-            # imagebutton auto "images/side/icon_inv_%s.png" action [ Show("inventory_screen")]
+        imagebutton auto "images/side/icon_inv_%s.png" focus_mask True action [Show("inventory_screen")] xalign 0.25 yalign 0.2
+        # messenger app
+        imagebutton auto "images/side/icon_msg_%s.png" focus_mask True action [Jump("message")] xalign 0.75 yalign 0.2
+        # settings app
+        imagebutton auto "images/side/icon_set_%s.png" focus_mask True action [ShowMenu("preferences")] xalign 0.75 yalign 0.75
 
 
 

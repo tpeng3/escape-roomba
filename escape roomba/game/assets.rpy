@@ -50,11 +50,11 @@ init python:
 
 define l = Character("Leika", image="leika", vspace=2, who_color="#fff")
 
-define lc = Character("Leika", kind=nvl, what_suffix="{fast}", what_color="#000", who_size=18, who_color="000", window_background="gui/frame2.png")
-define wc = Character("Witch2", kind=nvl, what_suffix="{fast}", what_color="#000", who_size=18, who_color="000", window_background="gui/frame.png")
+define lc = Character("", kind=nvl, what_suffix="{fast}", what_color="#000", who_size=18, who_color="000")
+define wc = Character("", kind=nvl, what_suffix="{fast}", what_color="#000", who_size=18, who_color="000")
 
-define lsame = Character("", kind=nvl, what_suffix="{fast}", what_color="#000", window_background="gui/frame2.png")
-define wsame = Character("", kind=nvl, what_suffix="{fast}", what_color="#000", window_background="gui/frame.png")
+# define lsame = Character("", kind=nvl, what_suffix="{fast}", what_color="#000")
+# define wsame = Character("", kind=nvl, what_suffix="{fast}", what_color="#000")
 
 #to add voice bleeps, just add `callback=l_beep`
 #to add ctc, add in `ctc="ctc_arrow",`
