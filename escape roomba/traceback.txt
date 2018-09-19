@@ -3,7 +3,7 @@
 While running game code:
   File "renpy/common/00start.rpy", line 120, in script
     return
-Exception: Could not find return label (u'D:\\Renpy Projects\\escape roomba/game/script.rpy', 1536966844, 0).
+Exception: Could not find return label (u'D:\\Renpy Projects\\escape roomba/game/script.rpy', 1537321497, 0).
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -14,9 +14,9 @@ Full traceback:
     next_node(renpy.game.context().lookup_return(pop=True))
   File "D:\Renpy\renpy-7.0.0-sdk\renpy\execution.py", line 670, in lookup_return
     raise Exception("Could not find return label {!r}.".format(self.return_stack[-1]))
-Exception: Could not find return label (u'D:\\Renpy Projects\\escape roomba/game/script.rpy', 1536966844, 0).
+Exception: Could not find return label (u'D:\\Renpy Projects\\escape roomba/game/script.rpy', 1537321497, 0).
 
 Windows-8-6.2.9200
 Ren'Py 7.0.0.196
 Escape Roomba 0.0
-Mon Sep 17 14:54:43 2018
+Tue Sep 18 20:08:43 2018

@@ -45,6 +45,7 @@ menu:
 
 # default searching label
 label seekawayout:
+    $ unclickable = False
     window hide
 
 label click:
@@ -59,6 +60,7 @@ label whodis:
 
 # would probably move the chat messages into its own file later
 label message:
+    $ unclickable = True
     wc "Listen up."
     wc "I've only had Roomba-san for one day and and a half,"
     wc "But if anything happened to him I would kill everyone in this room and then myself."

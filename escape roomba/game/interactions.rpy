@@ -9,6 +9,9 @@ init offset = -1
 ## Room Objects
 ################################################################################
 
+init -2:
+    $ unclickable = False
+
 screen room:
     fixed:
         fit_first True
@@ -23,7 +26,7 @@ screen room:
         add "images/bg/bg_temp.png"
         # this is gonna be some walltext code later HOO...
         if roomstate == "bark":
-            imagebutton auto "images/bg/genericitem_%s.png" focus_mask True xanchor 0 yanchor 0 xpos 700 ypos 90 action Jump("whodis")
+            imagebutton auto "images/bg/genericitem_%s.png" focus_mask True xanchor 0 yanchor 0 xpos 700 ypos 90 action If(not unclickable, Jump("whodis"))
             # imagebutton auto "images/side/show_recipe_%s.png" focus_mask True xanchor 0 yanchor 0 xpos 900 ypos 90 action Jump("message")
         
         add "images/bg/bg_borders.png"
