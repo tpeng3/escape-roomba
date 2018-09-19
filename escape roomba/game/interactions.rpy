@@ -2,7 +2,7 @@
 ## Initialization
 ################################################################################
 
-init offset = -1
+init offset = -2
 
 
 ################################################################################ 
@@ -11,6 +11,8 @@ init offset = -1
 
 init -2:
     $ unclickable = False
+    $ talking = False
+    $ alert = False
 
 screen room:
     fixed:
@@ -52,11 +54,11 @@ screen phone:
         add "images/side/menu_phone.png"
 
         # inventory app
-        imagebutton auto "images/side/icon_inv_%s.png" focus_mask True action [Show("inventory_screen")] xalign 0.25 yalign 0.2
+        imagebutton auto "images/side/icon_inv_%s.png" focus_mask True action If(not talking, [Show("inventory_screen")]) xalign 0.25 yalign 0.2
         # messenger app
-        imagebutton auto "images/side/icon_msg_%s.png" focus_mask True action [Jump("message")] xalign 0.75 yalign 0.2
+        imagebutton auto "images/side/icon_msg_%s.png" focus_mask True action If(not talking, [Jump("message")]) xalign 0.75 yalign 0.2
         # settings app
-        imagebutton auto "images/side/icon_set_%s.png" focus_mask True action [ShowMenu("preferences")] xalign 0.75 yalign 0.75
+        imagebutton auto "images/side/icon_set_%s.png" focus_mask True action If(not talking, [ShowMenu("preferences")]) xalign 0.75 yalign 0.75
 
 
 

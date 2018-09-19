@@ -1,33 +1,9 @@
 # The script of the game goes in this file.
 
-# init:
-#     # uwu is the shorthand for 0,0,0,0 position
-#     $ uwu = Position(xanchor=0, yanchor=0, xpos=0, ypos=0)
-
 # The game starts here.
 label start:
-    # #has music box
-    # $ hasmubox = False
-    # # music box on = on
-    # $ mubox = "nope"
-    # # item/action, on = sure
-    # $ ia = "nah"
-    # # has compad
-    # $ compad = "cool"
-    # # resolute status, on = heckya
-    # $ resolute = "notyet"
-    # # brave level
-    # $ braves = "2"
-    # # fuel level
-    # $ fuel = 6
-    # #call the side gui
-    # $ spic = "images/side/com/blank.png"
-    # $ stxt = ""
-
-    # # only used at the start
-    # $ startcompad = "no"
-
     $ roomstate = "blank"
+    $ talking = True
     scene black
     show screen room
     show screen phone
@@ -35,9 +11,10 @@ label start:
     l default "Let's see..."
     l "If there are two guys on the moon, and one killed the other with a rock, would that be fcked up or what?"
 menu:
-    l "should i reply?"
+    l "what do I think?"
     "> yea":
         l "not if it's dio"
+        $ alert = True
         jump seekawayout
     "> nah we good":
         l "Is that so?"
@@ -46,6 +23,13 @@ menu:
 # default searching label
 label seekawayout:
     $ unclickable = False
+    $ talking = False
+    l "hello??"
+    if alert:
+        l "wheres my fcking alert"
+        show alert at mid zorder 200
+    else:
+        hide alert
     window hide
 
 label click:
@@ -53,6 +37,7 @@ label click:
     $ renpy.pause(hard=True)
 
 label whodis:
+    $ talking = True
     $ inventory.add(tomato_whole)
     l "what is that."
     l "that's not {emph}roombasan{/emph}"
@@ -60,12 +45,14 @@ label whodis:
 
 # would probably move the chat messages into its own file later
 label message:
+    $ talking = True
     $ unclickable = True
+    $ alert = False
     wc "Listen up."
     wc "I've only had Roomba-san for one day and and a half,"
     wc "But if anything happened to him I would kill everyone in this room and then myself."
 menu:
-    l "What should I say?"
+    lc "(...)" #replace with typing anim later
     "> Yes.":
         lc "lol id lose in a knife fight against roombasan"
         jump seekawayout

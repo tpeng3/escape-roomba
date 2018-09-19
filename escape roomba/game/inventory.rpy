@@ -55,8 +55,8 @@ screen inventory_screen:
     add "gui/nvl.png" xanchor 0 yanchor 0 xpos 23 ypos 20
     # padding gui.nvl_borders.padding
 
-    hbox align (.95,.04) spacing 20:
-        imagebutton auto "images/inventory/hide_inventory_%s.png" focus_mask True action [ Hide("inventory_screen")]
+    hbox xanchor 0 yanchor 0 xpos 822 ypos 21:
+        imagebutton auto "images/side/menu_inv_%s.png" focus_mask True action [ Hide("inventory_screen")]
     $ itemnum = 8 # how many items to display on one page
     $ x = 160 # coordinates of the top left item position
     $ y = 0

@@ -29,6 +29,18 @@ image ctc_arrow:
     0.2
     repeat
 
+# image alert = "images/side/alert.png"
+image alert:
+    # zorder 200
+    # xpos -10
+    # ypos -10
+    "images/side/alert.png"
+    # alpha 1.0
+    # 0.5
+    # alpha 0.0
+    # 0.5
+    # repeat
+
 image im = "gui/overlay/item_menu.png"
 
 # Script style shortcuts

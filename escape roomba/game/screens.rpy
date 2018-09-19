@@ -1284,6 +1284,7 @@ style notify_text:
 
 
 screen nvl(dialogue, items=None):
+    add "images/side/menu_msg.png" xanchor 0 yanchor 0 xpos 822 ypos 21
 
     window:
         style "nvl_window"
