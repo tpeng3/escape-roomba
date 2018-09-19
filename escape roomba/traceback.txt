@@ -1,61 +1,24 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-Compiling ATL code at game/assets.rpy:34
-  File "game/script.rpy", line 35, in script
-    $ renpy.pause(hard=True)
-  File "game/script.rpy", line 35, in <module>
-    $ renpy.pause(hard=True)
-NameError: name 'zorder200' is not defined
+While running game code:
+  File "game/script.rpy", line 30, in script
+    show alert onlayer screen at mid
+TypeError: 'tuple' object is not callable
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 35, in script
-    $ renpy.pause(hard=True)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\ast.py", line 862, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\python.py", line 1912, in py_exec_bytecode
-    exec bytecode in globals, locals
-  File "game/script.rpy", line 35, in <module>
-    $ renpy.pause(hard=True)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\exports.py", line 1330, in pause
-    rv = renpy.ui.interact(mouse='pause', type='pause', roll_forward=roll_forward)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\ui.py", line 287, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 2649, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 3033, in interact_core
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 511, in visit_all
-    d.visit_all(callback)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 511, in visit_all
-    d.visit_all(callback)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 511, in visit_all
-    d.visit_all(callback)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 511, in visit_all
-    d.visit_all(callback)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 511, in visit_all
-    d.visit_all(callback)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 511, in visit_all
-    d.visit_all(callback)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 511, in visit_all
-    d.visit_all(callback)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\display\core.py", line 508, in visit_all
-    for d in self.visit():
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\atl.py", line 574, in visit
-    block = self.compile()
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\atl.py", line 481, in compile
-    block = self.atl.compile(self.context)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\atl.py", line 676, in compile
-    statements = [ i.compile(ctx) for i in self.statements ]
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\atl.py", line 889, in compile
-    child = ctx.eval(expr)
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\atl.py", line 246, in eval
-    return eval(expr, renpy.store.__dict__, self.context)  # @UndefinedVariable
-  File "<string>", line 1, in <module>
-NameError: name 'zorder200' is not defined
+  File "game/script.rpy", line 30, in script
+    show alert onlayer screen at mid
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\ast.py", line 1131, in execute
+    show_imspec(self.imspec, atl=getattr(self, "atl", None))
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\ast.py", line 1101, in show_imspec
+    atl=atl)
+  File "D:\Renpy\renpy-7.0.0-sdk\renpy\exports.py", line 691, in show
+    img = i(img)
+TypeError: 'tuple' object is not callable
 
 Windows-8-6.2.9200
 Ren'Py 7.0.0.196
 Escape Roomba 0.0
-Tue Sep 18 21:14:30 2018
+Tue Sep 18 21:39:17 2018

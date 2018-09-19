@@ -24,13 +24,8 @@ menu:
 label seekawayout:
     $ unclickable = False
     $ talking = False
-    l "hello??"
     if alert:
-        l "wheres my fcking alert"
-        show alert at mid zorder 200
-    else:
-        hide alert
-    window hide
+        show alert onlayer screens
 
 label click:
     $ roomstate = "bark"
@@ -48,6 +43,7 @@ label message:
     $ talking = True
     $ unclickable = True
     $ alert = False
+    hide alert onlayer screens
     wc "Listen up."
     wc "I've only had Roomba-san for one day and and a half,"
     wc "But if anything happened to him I would kill everyone in this room and then myself."

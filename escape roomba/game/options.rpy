@@ -38,6 +38,9 @@ define gui.about = _("")
 
 define build.name = "EscapeRoomba"
 
+# displayable layers
+define config.layers = ['master', 'transient', 'screens', 'overlay' ]
+
 
 ## Sounds and music ############################################################
 

@@ -15,6 +15,7 @@ init -2:
     $ alert = False
 
 screen room:
+    zorder -999
     fixed:
         fit_first True
         xanchor 0
