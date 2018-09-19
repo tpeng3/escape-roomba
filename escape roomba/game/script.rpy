@@ -26,6 +26,7 @@ label seekawayout:
     $ talking = False
     if alert:
         show alert onlayer screens
+    l "I should look around..."
 
 label click:
     $ roomstate = "bark"

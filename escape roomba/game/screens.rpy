@@ -96,6 +96,9 @@ style frame:
 ## https://www.renpy.org/doc/html/screen_special.html#say
 
 screen say(who, what):
+    if talking:
+        add "images/side/menu_dim.png" xanchor 0 yanchor 0 xpos 822 ypos 21
+
     style_prefix "say"
 
     window:
