@@ -52,6 +52,9 @@ screen inventory_screen:
     # add "inventory2.png" # the background
     modal True #prevent clicking on other stuff when inventory is shown
 
+    add "gui/nvl.png" xanchor 0 yanchor 0 xpos 23 ypos 20
+    # padding gui.nvl_borders.padding
+
     hbox align (.95,.04) spacing 20:
         imagebutton auto "images/inventory/hide_inventory_%s.png" focus_mask True action [ Hide("inventory_screen")]
     $ itemnum = 8 # how many items to display on one page

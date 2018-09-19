@@ -17,10 +17,16 @@ transform uwu: #for you reddo
     ypos 0
 
 image ctc_arrow:
-    "gui/continue.png" #continue.png does not exist rn, make one later?
-    0.75
-    "gui/continue2.png"
-    0.75
+    xpos 10
+    ypos -5
+    "gui/ctc_star1.png" #continue.png does not exist rn, make one later?
+    0.3
+    "gui/ctc_star2.png"
+    0.2
+    "gui/ctc_star3.png"
+    0.2
+    "gui/ctc_star2.png"
+    0.2
     repeat
 
 image im = "gui/overlay/item_menu.png"
@@ -48,7 +54,7 @@ init python:
             elif event == "slow_done" or event == "end":
                 renpy.music.stop(channel="bleeps")
 
-define l = Character("Leika", image="leika", vspace=2, who_color="#fff")
+define l = Character("Leika:", image="leika", vspace=2, who_color="#FAA293", what_color="#fff", ctc="ctc_arrow")
 
 define lc = Character("", kind=nvl, what_suffix="{fast}", what_color="#000", who_size=18, who_color="000")
 define wc = Character("", kind=nvl, what_suffix="{fast}", what_color="#000", who_size=18, who_color="000")

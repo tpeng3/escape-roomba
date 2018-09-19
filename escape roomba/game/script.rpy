@@ -35,6 +35,7 @@ label start:
     l default "Let's see..."
     l "If there are two guys on the moon, and one killed the other with a rock, would that be fcked up or what?"
 menu:
+    l "should i reply?"
     "> yea":
         l "not if it's dio"
         jump seekawayout
@@ -62,6 +63,7 @@ label message:
     wc "I've only had Roomba-san for one day and and a half,"
     wc "But if anything happened to him I would kill everyone in this room and then myself."
 menu:
+    l "What should I say?"
     "> Yes.":
         lc "lol id lose in a knife fight against roombasan"
         jump seekawayout

@@ -140,11 +140,12 @@ style namebox:
     ypos gui.name_ypos
     ysize gui.namebox_height
 
-    background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    # background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
 
 style say_label:
     properties gui.text_properties("name", accent=True)
+    size 40
     xalign gui.name_xalign
     yalign 0.5
 
@@ -206,8 +207,6 @@ screen choice(items):
         for i in items:
             textbutton i.caption action i.action
 
-        add SideImage() xalign 0.05 yalign 0.95
-
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.
@@ -220,14 +219,14 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.0
-    xpos gui.dialogue_xpos
-    ypos gui.dialogue_ypos + 416
+    xpos gui.dialogue_xpos - 100 # tweak later when font's changed
+    ypos gui.dialogue_ypos + 450
     yanchor 0.5
 
     spacing gui.choice_spacing
 
-# style choice_button is default:
-#     properties gui.button_properties("choice_button")
+style choice_button is default:
+    properties gui.button_properties("choice_button")
 
 style choice_button_text is default:
     properties gui.button_text_properties("choice_button")
