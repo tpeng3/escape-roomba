@@ -67,8 +67,8 @@ init python:
 
 define l = Character("Leika:", image="leika", vspace=2, who_color="#FAA293", what_color="#fff", ctc="ctc_arrow")
 
-define lc = Character("", kind=nvl, what_suffix="{fast}", what_color="#000", who_size=18, who_color="000")
-define wc = Character("", kind=nvl, what_suffix="{fast}", what_color="#000", who_size=18, who_color="000")
+define lc = Character("Leika", kind=nvl, what_suffix="{fast}", what_color="#000", who_size=18, who_color="000")
+define wc = Character("Naza", kind=nvl, what_suffix="{fast}", what_color="#000", who_size=18, who_color="000")
 
 # define lsame = Character("", kind=nvl, what_suffix="{fast}", what_color="#000")
 # define wsame = Character("", kind=nvl, what_suffix="{fast}", what_color="#000")

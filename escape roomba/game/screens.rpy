@@ -1301,27 +1301,33 @@ screen nvl(dialogue, items=None):
 
             window:
                 id d.window_id
+                if d.who is not None:
+                    if d.who == "Leika":
+                        $ msg_icon = "images/sprite/leika_icon.png"
+                        $ msg_bg = "#fff"
+                    if d.who == "Naza":
+                        $ msg_icon = "images/sprite/naza_icon.png"
+                        $ msg_bg = "#f7ffd6"
+                hbox:
+                    add msg_icon xpos -80 ypos -10
 
-                vbox:
-                    yfit gui.nvl_height is None
-                    spacing 6
-
-                    if d.who is not None:
-
-                        if d.who is not "":
-                            text d.who:
-                                id d.who_id
-
-                        frame:
-                            background "#ffffff"
-                            xpos 0
-                            # top_padding 10 bottom_padding 10 left_padding 10 right_padding 10
+                    vbox:
+                        xpos -70
+                        yfit gui.nvl_height is None
+                        spacing 6
+    
+                        if d.who is not None:
+    
+                            frame:
+                                background msg_bg
+                                xpos 0
+                                # top_padding 10 bottom_padding 10 left_padding 10 right_padding 10
+                                text d.what:
+                                    id d.what_id
+    
+                        else:
                             text d.what:
                                 id d.what_id
-
-                    else:
-                        text d.what:
-                            id d.what_id
 
 
 screen nvl_dialogue(dialogue):
@@ -1367,8 +1373,11 @@ style nvl_window:
     padding gui.nvl_borders.padding
 
 style nvl_entry:
-    xfill True
+    xfill False
     ysize gui.nvl_height
+    top_margin -10
+    padding (10,10)
+
 
 style nvl_label:
     xpos gui.nvl_name_xpos
