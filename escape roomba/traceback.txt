@@ -1,22 +1,76 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "renpy/common/00start.rpy", line 120, in script
-    return
-Exception: Could not find return label (u'D:\\Renpy Projects\\escape roomba/game/script.rpy', 1536966844, 0).
+  File "game/script.rpy", line 53, in script
+    $ renpy.pause(hard=True)
+  File "game/script.rpy", line 53, in <module>
+    $ renpy.pause(hard=True)
+  File "game/interactions.rpy", line 14, in execute
+    fit_first True
+  File "game/interactions.rpy", line 14, in execute
+    fit_first True
+  File "game/interactions.rpy", line 15, in execute
+    xanchor 0
+  File "game/interactions.rpy", line 27, in execute
+    # imagebutton auto "images/side/show_recipe_%s.png" focus_mask True xanchor 0 yanchor 0 xpos 900 ypos 90 action Jump("message")
+  File "game/interactions.rpy", line 28, in execute
+    
+  File "game/interactions.rpy", line 28, in keywords
+    
+NameError: name 'unclickable' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/00start.rpy", line 120, in script
-    return
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\ast.py", line 1448, in execute
-    next_node(renpy.game.context().lookup_return(pop=True))
-  File "D:\Renpy\renpy-7.0.0-sdk\renpy\execution.py", line 670, in lookup_return
-    raise Exception("Could not find return label {!r}.".format(self.return_stack[-1]))
-Exception: Could not find return label (u'D:\\Renpy Projects\\escape roomba/game/script.rpy', 1536966844, 0).
+  File "game/script.rpy", line 53, in script
+    $ renpy.pause(hard=True)
+  File "C:\Users\Redd\RENPY\renpy\ast.py", line 814, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\Redd\RENPY\renpy\python.py", line 1719, in py_exec_bytecode
+    exec bytecode in globals, locals
+  File "game/script.rpy", line 53, in <module>
+    $ renpy.pause(hard=True)
+  File "C:\Users\Redd\RENPY\renpy\exports.py", line 1278, in pause
+    rv = renpy.ui.interact(mouse='pause', type='pause', roll_forward=roll_forward)
+  File "C:\Users\Redd\RENPY\renpy\ui.py", line 285, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 2526, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 2793, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
+    d.visit_all(callback)
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
+    d.visit_all(callback)
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
+    d.visit_all(callback)
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
+    d.visit_all(callback)
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 495, in visit_all
+    d.visit_all(callback)
+  File "C:\Users\Redd\RENPY\renpy\display\screen.py", line 399, in visit_all
+    callback(self)
+  File "C:\Users\Redd\RENPY\renpy\display\core.py", line 2793, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\Redd\RENPY\renpy\display\screen.py", line 409, in per_interact
+    self.update()
+  File "C:\Users\Redd\RENPY\renpy\display\screen.py", line 578, in update
+    self.screen.function(**self.scope)
+  File "game/interactions.rpy", line 14, in execute
+    fit_first True
+  File "game/interactions.rpy", line 14, in execute
+    fit_first True
+  File "game/interactions.rpy", line 15, in execute
+    xanchor 0
+  File "game/interactions.rpy", line 27, in execute
+    # imagebutton auto "images/side/show_recipe_%s.png" focus_mask True xanchor 0 yanchor 0 xpos 900 ypos 90 action Jump("message")
+  File "game/interactions.rpy", line 28, in execute
+    
+  File "game/interactions.rpy", line 28, in keywords
+    
+  File "<screen language>", line 28, in <module>
+NameError: name 'unclickable' is not defined
 
-Windows-8-6.2.9200
-Ren'Py 7.0.0.196
+Windows-7-6.1.7601-SP1
+Ren'Py 6.99.12.4.2187
 Escape Roomba 0.0
-Mon Sep 17 14:54:43 2018
