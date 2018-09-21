@@ -1,16 +1,12 @@
 # Setting up the inventory (code referenced from  boneapp and leon's inventory screen)
 init -1 python:
-    # import renpy.store as store
-    # import renpy.exports as renpy # we need this so Ren'Py properly handles rollback with classes
-    # from operator import attrgetter # we need this for sorting items
-
     inv_page = 0 # initial page of the inventory screen
     item = None
 
     class Item(store.object):
         def __init__(self, name, player=None, image=""):
             self.name = name
-            self.player = player # which character can use this item?
+            # self.player = player # which character can use this item?
             self.image = image # image file to use for this item
 
     class Inventory(store.object):
@@ -21,35 +17,21 @@ init -1 python:
         def drop(self, item):
             self.items.remove(item)
 
-    def item_use():
-        item.use()
-
     # set up inventory (and possible things to pick up)
     inventory = Inventory()
 
-    ham_packaged = Item("Packaged Sliced Ham", image = "inv/inv_ham_packaged.png")
-    tomato_whole = Item("Whole Tomato", image = "images/inventory/tomato_idle.png")
+    ham_packaged = Item("Packaged Sliced Ham", image = "images/inventory/ham")
+    tomato_whole = Item("Whole Tomato", image = "images/inventory/tomato")
 
-    # showitems = True #debug text
-    # def display_items_overlay():
-    #     if showitems:
-    #         inventory_show = "Inventory: "
-    #         for i in range(0, len(inventory.items)):
-    #             item_name = inventory.items[i].name
-    #             if i > 0:
-    #                 inventory_show += ", "
-    #             inventory_show += item_name
-
-    #         ui.frame()
-    #         ui.text(inventory_show, color="#000")
-    # config.overlay_functions.append(display_items_overlay)
-
-# screen inventory_button:
-#     hbox align (.95,.04) spacing 20:
-#         imagebutton auto "images/inventory/show_inventory_%s.png" focus_mask True action [ Show("inventory_screen"), Hide("inventory_button")]
+    def display_items_overlay():
+        inventory_show = "Selected: "
+        if item is not None:
+            inventory_show += item
+        ui.frame()
+        ui.text(inventory_show, color="#000")
+    config.overlay_functions.append(display_items_overlay)
 
 screen inventory_screen:
-    # add "inventory2.png" # the background
     modal True #prevent clicking on other stuff when inventory is shown
 
     add "gui/nvl.png" xanchor 0 yanchor 0 xpos 23 ypos 20
@@ -61,19 +43,20 @@ screen inventory_screen:
     $ x = 160 # coordinates of the top left item position
     $ y = 0
     $ i = 0
-    $ sorted_items = sorted(inventory.items, reverse=True) # sort the items
     $ next_inv_page = inv_page + 1
     if next_inv_page > int(len(inventory.items)/itemnum):
         $ next_inv_page = 0
-    for item in sorted_items:
+    for item in inventory.items:
         if i+1 <= (inv_page+1)*itemnum and i+1>inv_page*itemnum:
             $ x += 140
             if i%4==0:
                 $ y += 120
                 $ x = 160 # same as coordinates of top left item
-            $ pic = item.image
+            $ pic = item.image + "_idle.png"
+            # $ hoverpic = item.image + "_hover.png"
+            $ selpic = item.image + "_selected.png"
             $ my_tooltip = "tooltip_inventory_" + pic.replace("inv_", "").replace("images/inventory/","").replace(".png", "")
-            imagebutton idle pic hover pic xpos x ypos y action [Hide("gui_tooltip"), Show("inventory_button"), SetVariable("item", item), Hide("inventory_screen"), item_use] hovered [ Show("gui_tooltip", my_picture=my_tooltip, my_tt_ypos=0) ] unhovered [Hide("gui_tooltip")] #at inv_eff
+            imagebutton idle pic selected selpic xpos x ypos y action [SetVariable("item", inventory.items[int(len(inventory.items))-i-1].name)] hovered [ Show("gui_tooltip", my_picture=my_tooltip, my_tt_ypos=0) ] unhovered [Hide("gui_tooltip")]
 
         $ i += 1
         if len(inventory.items)>itemnum:
@@ -95,6 +78,6 @@ init -1:
     $ ypos = 465
 
     # TOOLTIPS
-    image tooltip_inventory_ham_packaged = LiveComposite((width, height), (0,ypos), Text("Packaged Sliced Ham"))
+    image tooltip_inventory_packaged_ham_idle = LiveComposite((width, height), (0,ypos), Text("It ham."))
     image tooltip_inventory_tomato_idle = LiveComposite((width, height), (0,ypos), Text("(It's a {emph}Whole Tomato.{/emph} I bet you $5 I can eat this whole.)"))
  

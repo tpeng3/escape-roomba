@@ -26,7 +26,7 @@ label seekawayout:
     $ talking = False
     if alert:
         show alert onlayer screens
-    l "I should look around..."
+    window hide
 
 label click:
     $ roomstate = "bark"
@@ -34,9 +34,12 @@ label click:
 
 label whodis:
     $ talking = True
-    $ inventory.add(tomato_whole)
-    l "what is that."
-    l "that's not {emph}roombasan{/emph}"
+    if item == "Whole Tomato":
+        l "i fed the doggo a tomato... is that safe...?"
+    else:
+        $ inventory.add(tomato_whole)
+        l "what is that."
+        l "that's not {emph}roombasan{/emph}"
     jump seekawayout
 
 # would probably move the chat messages into its own file later
@@ -57,6 +60,10 @@ menu:
         lc "hey......... bnch"
         jump seekawayout
 
+label hammy:
+    l "have a hammy day"
+    $ inventory.add(ham_packaged)
+    jump seekawayout
 
 label end:
     # This ends the game.
