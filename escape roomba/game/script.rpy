@@ -34,7 +34,7 @@ label click:
 
 label whodis:
     $ talking = True
-    if item == "Whole Tomato":
+    if selitem == "Whole Tomato":
         l "i fed the doggo a tomato... is that safe...?"
     else:
         $ inventory.add(tomato_whole)
@@ -48,22 +48,37 @@ label message:
     $ unclickable = True
     $ alert = False
     hide alert onlayer screens
-    wc "Listen up."
-    wc "I've only had Roomba-san for one day and and a half,"
-    wc "But if anything happened to him I would kill everyone in this room and then myself."
+    wc "So here's the plan."
+    wc "We gather all the bedsheets and pillows,"
+    wc "and build a blanket fort where we can cry about getting trapped in a hotel room."
 menu:
     lc "(...)" #replace with typing anim later
     "> Yes.":
-        lc "lol id lose in a knife fight against roombasan"
+        lc "bro........... I'll send roomba-san the goods."
         jump seekawayout
     "> No.":
-        lc "hey......... bnch"
+        lc "tina: yes i got tired of reading the same debugging flavor text jaflkewj"
         jump seekawayout
 
 label hammy:
     l "have a hammy day"
     $ inventory.add(ham_packaged)
     jump seekawayout
+
+label eggy:
+    l "why do we egg"
+    $ inventory.add(eggs)
+    jump seekawayout
+
+label cheesy:
+    l "im tired"
+    $ inventory.add(cheese)
+    jump seekawayout
+
+label te:
+    l "am i alive?"
+    jump seekawayout
+
 
 label end:
     # This ends the game.
