@@ -68,12 +68,12 @@ init python:
                 recipe.combine_check()
         return
 
-    # def check_success():
-    #     flag = "te"
-    #     if inventory.event_text is not None:
-    #         flag = inventory.event_text
-    #         inventory.event_text = None
-    #     return flag
+    def check_success():
+        flag = "te"
+        if inventory.event_text is not None:
+            flag = inventory.event_text
+            inventory.event_text = None
+        return flag
 
     # def display_items_overlay():
     #     inventory_show = "Selected: "
@@ -83,14 +83,14 @@ init python:
     #     ui.text(inventory_show, color="#000")
     # config.overlay_functions.append(display_items_overlay)
 
-    # def display_combine_overlay():
-    #     inventory_show = "Selected Combo: "
-    #     for item in inventory.selected_items:
-    #         inventory_show += item.name
-    #         inventory_show += ", "
-    #     ui.frame()
-    #     ui.text(inventory_show, color="#000")
-    # config.overlay_functions.append(display_combine_overlay)
+    def display_combine_overlay():
+        inventory_show = "Selected Combo: "
+        for item in inventory.selected_items:
+            inventory_show += item.name
+            inventory_show += ", "
+        ui.frame()
+        ui.text(inventory_show, color="#000")
+    config.overlay_functions.append(display_combine_overlay)
 
 
 screen inventory_screen:
@@ -168,7 +168,7 @@ screen combining_screen:
             $ selpic = item.image + "_selected.png"
             $ my_tooltip = "tooltip_" + item.image.replace("inv_", "").replace("images/inventory/","").replace(".png", "")
 
-            imagebutton idle pic xpos x ypos y action [SetVariable("selitem", inventory.items[i].name), SetVariable("sel_xpos", x), SetVariable("sel_ypos", y), item.use, combine_items()]
+            imagebutton idle pic xpos x ypos y action [SetVariable("selitem", inventory.items[i].name), SetVariable("sel_xpos", x), SetVariable("sel_ypos", y), item.use, combine_items(), check_success()]
 
             # if item in inventory.selected_items:
             if selitem is not None:
