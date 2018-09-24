@@ -68,12 +68,12 @@ init python:
                 recipe.combine_check()
         return
 
-    def check_success():
-        flag = "te"
-        if inventory.event_text is not None:
-            flag = inventory.event_text
-            inventory.event_text = None
-        return flag
+    # def check_success():
+    #     flag = "te"
+    #     if inventory.event_text is not None:
+    #         flag = inventory.event_text
+    #         inventory.event_text = None
+    #     return flag
 
     # def display_items_overlay():
     #     inventory_show = "Selected: "
@@ -168,10 +168,11 @@ screen combining_screen:
             $ selpic = item.image + "_selected.png"
             $ my_tooltip = "tooltip_" + item.image.replace("inv_", "").replace("images/inventory/","").replace(".png", "")
 
-            imagebutton idle pic xpos x ypos y action [SetVariable("item", item), item.use, combine_items()]
+            imagebutton idle pic xpos x ypos y action [SetVariable("selitem", inventory.items[i].name), SetVariable("sel_xpos", x), SetVariable("sel_ypos", y), item.use, combine_items()]
 
-            if item in inventory.selected_items:
-                add "images/inventory/combined.png" xpos x ypos y
+            # if item in inventory.selected_items:
+            if selitem is not None:
+                add "images/inventory/combined.png" xpos sel_xpos ypos sel_ypos
 
         $ i += 1
         if len(inventory.items)>itemnum:
