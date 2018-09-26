@@ -26,9 +26,7 @@ init -1 python:
             self.items = []
             self.selected_items = []
             self.event_text = None
-        def add(self, item): # a simple method that adds an item; we could also add conditions here (like check if there is space in the inventory)
-            if item.recipeItem is not None:
-                self.event_text = item.recipeItem
+        def add(self, item):
             self.items.append(item)
         def drop(self, item):
             self.items.remove(item)
@@ -42,10 +40,9 @@ init -1 python:
             for item in inventory.selected_items:
                 if item in correct_recipe_items:
                     correct_recipe_items.remove(item)
-                if not (item in self.items):
-                    too_many = True
             if len(correct_recipe_items) == 0:
                 inventory.add(self.item_created)
+                inventory.event_text = self.item_created.recipeItem
                 for drop_item in self.items:
                     inventory.drop(drop_item)
             inventory.selected_items = []
@@ -63,17 +60,24 @@ init -1 python:
 
 init python:
     def combine_items():
+        print("how manytimes")
         if len(inventory.selected_items) == 2:
+            inventory.event_text = None
             for recipe in recipes:
                 recipe.combine_check()
-        return
+            if inventory.event_text is not None:
+                print(inventory.event_text)
+                return inventory.event_text
+        return "inventory"
+        
 
-    def check_success():
-        flag = "te"
-        if inventory.event_text is not None:
-            flag = inventory.event_text
-            inventory.event_text = None
-        return flag
+    # def check_success():
+    #     flag = "inventory"
+    #     if inventory.event_text is not None:
+    #         flag = inventory.event_text
+    #         print(flag)
+    #         inventory.event_text = None
+    #     return flag
 
     # def display_items_overlay():
     #     inventory_show = "Selected: "
@@ -99,7 +103,7 @@ screen inventory_screen:
     add "gui/nvl.png" xanchor 0 yanchor 0 xpos 23 ypos 20
 
     hbox xanchor 0 yanchor 0 xpos 822 ypos 21:
-        imagebutton auto "images/side/menu_inv_%s.png" focus_mask True action [Hide("inventory_screen"), Hide("gui_select")]
+        imagebutton auto "images/side/menu_inv_%s.png" focus_mask True action [Hide("inventory_screen"), Hide("gui_tooltip"), SetVariable("unclickable", False)]
 
     hbox xanchor 0 yanchor 0 xpos 22 ypos 21:
         imagebutton idle "images/inventory/button_deselect.png" focus_mask True action [SetVariable("selitem", None)]
@@ -138,13 +142,15 @@ screen inventory_screen:
 
 
 screen combining_screen:
-    modal True #prevent clicking on other stuff when inventory is shown
+    modal False
 
     add "gui/nvl.png" xanchor 0 yanchor 0 xpos 23 ypos 20
 
+    # exit app
     hbox xanchor 0 yanchor 0 xpos 822 ypos 21:
-        imagebutton auto "images/side/menu_inv_%s.png" focus_mask True action [Hide("combining_screen")]
+        imagebutton auto "images/side/menu_inv_%s.png" focus_mask True action [Hide("combining_screen"), Jump("seekawayout")]
 
+    # switch to viewing mode
     hbox xanchor 0 yanchor 0 xpos 22 ypos 100:
         imagebutton idle "images/inventory/button_view.png" focus_mask True action [Hide("combining_screen"), Show("inventory_screen")]
 
@@ -168,7 +174,7 @@ screen combining_screen:
             $ selpic = item.image + "_selected.png"
             $ my_tooltip = "tooltip_" + item.image.replace("inv_", "").replace("images/inventory/","").replace(".png", "")
 
-            imagebutton idle pic xpos x ypos y action [SetVariable("selitem", inventory.items[i].name), SetVariable("sel_xpos", x), SetVariable("sel_ypos", y), item.use, combine_items(), check_success()]
+            imagebutton idle pic xpos x ypos y action [SetVariable("selitem", inventory.items[i].name), SetVariable("sel_xpos", x), SetVariable("sel_ypos", y), item.use, Call(combine_items())]
 
             # if item in inventory.selected_items:
             if selitem is not None:

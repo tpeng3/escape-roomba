@@ -76,9 +76,12 @@ label cheesy:
     jump seekawayout
 
 label te:
+    show poop onlayer screens at mid
     l "am i alive?"
-    jump seekawayout
+    hide poop onlayer screens
 
+label inventory:
+    $ renpy.pause(hard=True)
 
 label end:
     # This ends the game.

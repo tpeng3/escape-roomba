@@ -64,7 +64,7 @@ screen phone:
         # if selitem is not None:
         #     imagebutton auto "images/side/icon_inv_%s.png"  mouse "hover" action If(not talking, [Show("inventory_screen"), Show("gui_select")]) xalign 0.25 yalign 0.2
         # else:
-        imagebutton auto "images/side/icon_inv_%s.png"  mouse "hover" action If(not talking, [Show("inventory_screen")]) xalign 0.25 yalign 0.2
+        imagebutton auto "images/side/icon_inv_%s.png"  mouse "hover" action If(not talking, [Show("inventory_screen"), SetVariable("unclickable", True)]) xalign 0.25 yalign 0.2
         # messenger app
         imagebutton auto "images/side/icon_msg_%s.png" mouse "hover" action If(not talking, [Jump("message")]) xalign 0.75 yalign 0.2
         # settings app

@@ -119,6 +119,7 @@ image p612_sm:
     repeat
 image ship = "images/bg/ship.png"
 image ship h = "images/bg/ship h.png"
+image poop = "images/inventory/screen_combined.png"
 
 
 # Declare cgs
