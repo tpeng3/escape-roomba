@@ -1304,11 +1304,11 @@ screen nvl(dialogue, items=None):
                 id d.window_id
                 if d.who is not None:
                     if d.who == "Leika":
-                        $ msg_icon = "images/sprite/leika_icon.png"
-                        $ msg_bg = "#fff"
+                        $ msg_icon = "images/sprite/icon_leika.png"
+                        $ msg_bg = "gui/msgbox_leika.png"
                     if d.who == "Naza":
-                        $ msg_icon = "images/sprite/naza_icon.png"
-                        $ msg_bg = "#f7ffd6"
+                        $ msg_icon = "images/sprite/icon_naza.png"
+                        $ msg_bg = "gui/msgbox_naza.png"
                 hbox:
                     add msg_icon xpos -80 ypos -10
 

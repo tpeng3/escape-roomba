@@ -29,7 +29,7 @@ screen room:
         ymaximum 395
 
         # bg will change via CASE SWITCHING later aka check dynamic displayables
-        add "images/bg/bg_temp.png"
+        add "images/bg/bg_noborder.png"
         # this is gonna be some walltext code later HOO...
         if roomstate == "bark":
             imagebutton auto "images/bg/genericitem_%s.png" focus_mask True xanchor 0 yanchor 0 xpos 700 ypos 90 mouse "hover" action If(not unclickable, Jump("whodis"))

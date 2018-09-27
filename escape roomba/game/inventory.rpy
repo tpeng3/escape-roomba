@@ -87,45 +87,45 @@ init python:
     #     ui.text(inventory_show, color="#000")
     # config.overlay_functions.append(display_items_overlay)
 
-    def display_combine_overlay():
-        inventory_show = "Selected Combo: "
-        for item in inventory.selected_items:
-            inventory_show += item.name
-            inventory_show += ", "
-        ui.frame()
-        ui.text(inventory_show, color="#000")
-    config.overlay_functions.append(display_combine_overlay)
+    # def display_combine_overlay():
+    #     inventory_show = "Selected Combo: "
+    #     for item in inventory.selected_items:
+    #         inventory_show += item.name
+    #         inventory_show += ", "
+    #     ui.frame()
+    #     ui.text(inventory_show, color="#000")
+    # config.overlay_functions.append(display_combine_overlay)
 
 
 screen inventory_screen:
     modal True #prevent clicking on other stuff when inventory is shown
 
-    add "gui/nvl.png" xanchor 0 yanchor 0 xpos 23 ypos 20
+    add "gui/overlay_inv.png" xanchor 0 yanchor 0 xpos 23 ypos 20
 
     hbox xanchor 0 yanchor 0 xpos 822 ypos 21:
         imagebutton auto "images/side/menu_inv_%s.png" focus_mask True action [Hide("inventory_screen"), Hide("gui_tooltip"), SetVariable("unclickable", False)]
 
-    hbox xanchor 0 yanchor 0 xpos 22 ypos 21:
-        imagebutton idle "images/inventory/button_deselect.png" focus_mask True action [SetVariable("selitem", None)]
+    # hbox xanchor 0 yanchor 0 xpos 22 ypos 21:
+    #     imagebutton idle "images/inventory/button_deselect.png" focus_mask True action [SetVariable("selitem", None)]
 
-    hbox xanchor 0 yanchor 0 xpos 22 ypos 100:
-        imagebutton idle "images/inventory/button_combine.png" focus_mask True action [Hide("inventory_screen"), Show("combining_screen")]
+    # hbox xanchor 0 yanchor 0 xpos 22 ypos 100:
+    #     imagebutton idle "images/inventory/button_combine.png" focus_mask True action [Hide("inventory_screen"), Show("combining_screen")]
 
     add "images/side/menu_dim.png" xanchor 0 yanchor 0 xpos 822 ypos 21    
     
     $ itemnum = 8 # how many items to display on one page
-    $ x = 160 # coordinates of the top left item position
-    $ y = 0
+    $ x = 123 # coordinates of the top left item position
+    $ y = -75
     $ i = 0
     $ next_inv_page = inv_page + 1
     if next_inv_page > int(len(inventory.items)/itemnum):
         $ next_inv_page = 0
     for item in inventory.items:
         if i+1 <= (inv_page+1)*itemnum and i+1>inv_page*itemnum:
-            $ x += 140
+            $ x += 165
             if i%4==0:
-                $ y += 120
-                $ x = 160 # same as coordinates of top left item
+                $ y += 165
+                $ x = 123 # same as coordinates of top left item
             $ idlepic = item.image + "_idle.png"
             $ hoverpic = item.image + "_hover.png"
             # $ selpic = item.image + "_selected.png"
